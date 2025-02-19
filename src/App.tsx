@@ -7,18 +7,27 @@ import { useAuth } from './context/AuthContext';
 import Login from './Login/Login';
 import SearchDashboard from './SearchDashboard/SearchDashboard';
 
+/* Context */
+import { FavoritesProvider } from './context/FavoritesContext';
+
 function App() {
   const { isAuthenticated } = useAuth();
+
   return (
     <Routes>
       <Route path='login' element={<Login />} />
       <Route
         path='search'
         element={
-          isAuthenticated ? <SearchDashboard /> : <Navigate to='/login' />
+          isAuthenticated ? (
+            <FavoritesProvider>
+              <SearchDashboard />
+            </FavoritesProvider>
+          ) : (
+            <Navigate to='/login' />
+          )
         }
       />
-
       <Route path='/' element={<Navigate to='/login' />} />
     </Routes>
   );
