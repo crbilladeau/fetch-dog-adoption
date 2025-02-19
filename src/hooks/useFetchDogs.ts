@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/config';
 
+/* Types */
+import { Dog } from '../SearchDashboard/types/Dog';
+
 interface SearchParams {
   breeds?: string[];
   minAge?: number;
@@ -8,13 +11,27 @@ interface SearchParams {
   zipCodes?: string[];
   sort?: { field: string; order: string };
   size?: number;
-  from?: number;
+  from?: string;
 }
 
-const useFetchDogs = ({ params }: { params: SearchParams }) => {
+interface FetchDogsResponse {
+  dogs: Dog[];
+  isLoading: boolean;
+  isError: boolean;
+  next: string | null;
+  prev: string | null;
+}
+
+const useFetchDogs = ({
+  params,
+}: {
+  params: SearchParams;
+}): FetchDogsResponse => {
   const [dogs, setDogs] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+  const [next, setNext] = useState<string | null>(null);
+  const [prev, setPrev] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -37,11 +54,25 @@ const useFetchDogs = ({ params }: { params: SearchParams }) => {
         });
 
         const dogIds = searchDogsResponse?.data?.resultIds || [];
+        const nextUrl = searchDogsResponse?.data?.next || null;
+        const prevUrl = searchDogsResponse?.data?.prev || null;
+
+        setNext(
+          nextUrl
+            ? new URLSearchParams(nextUrl.split('?')[1]).get('from')
+            : null
+        );
+        setPrev(
+          prevUrl
+            ? new URLSearchParams(prevUrl.split('?')[1]).get('from')
+            : null
+        );
 
         if (dogIds.length > 0) {
           const dogsResponse = await axios.post('/dogs', dogIds);
-
           setDogs(dogsResponse?.data || []);
+        } else {
+          setDogs([]);
         }
       } catch (error) {
         console.error(error);
@@ -63,7 +94,7 @@ const useFetchDogs = ({ params }: { params: SearchParams }) => {
     params?.from,
   ]);
 
-  return { dogs, isLoading, isError };
+  return { dogs, isLoading, isError, next, prev };
 };
 
 export default useFetchDogs;

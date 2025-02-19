@@ -18,8 +18,6 @@ export const FavoritesProvider = ({
 }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
 
-  console.log({ favorites });
-
   return (
     <FavoritesContext.Provider value={{ favorites, setFavorites }}>
       {children}

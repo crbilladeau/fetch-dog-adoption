@@ -1,31 +1,26 @@
-import React, { useState } from 'react';
-
-/* Components */
-import BreedFilter from './components/BreedFilter';
-import DogCard from './components/DogCard';
+import { useState } from 'react';
 
 /* Hooks */
 import useFetchBreeds from '../hooks/useFetchBreeds';
 import useFetchDogs from '../hooks/useFetchDogs';
 
-/* Types */
-import { Dog } from './types/Dog';
+/* Components */
+import BreedFilter from './components/BreedFilter';
+import PaginationControls from './components/PaginationControls';
+import DogsList from './components/DogsList';
+import SortDropdown from './components/SortDropdown';
+
+/* UI */
 
 const SearchDashboard = () => {
   const [selectedBreeds, setSelectedBreeds] = useState<string[]>([]);
+  const [cursor, setCursor] = useState<string | null>(null);
+  // TODO: add setParams instead of cursor
 
   const { breeds, isLoading: isLoadingBreeds } = useFetchBreeds();
-  const { dogs, isLoading: isDogsLoading } = useFetchDogs({
-    params: { breeds: selectedBreeds },
+  const { dogs, next, prev } = useFetchDogs({
+    params: { breeds: selectedBreeds, from: cursor ?? undefined },
   });
-
-  if (isDogsLoading) {
-    return <div className='text-white'>Loading...</div>;
-  }
-
-  if (dogs?.length === 0) {
-    return <div>No dogs found. Try adjusting your search filters.</div>;
-  }
 
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -37,11 +32,12 @@ const SearchDashboard = () => {
           setSelectedBreeds={setSelectedBreeds}
         />
       </div>
-      <div className='grid grid-cols-3 gap-8 my-10 mx-auto'>
-        {dogs?.map((dog: Dog) => (
-          <DogCard key={dog.id} dog={dog} />
-        ))}
+      <div className='self-end'>
+        <SortDropdown type='by' />
+        <SortDropdown type='order' />
       </div>
+      <DogsList dogs={dogs} />
+      <PaginationControls setCursor={setCursor} next={next} prev={prev} />
     </div>
   );
 };

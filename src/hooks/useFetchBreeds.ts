@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/config';
 
-const useFetchBreeds = () => {
+interface FetchBreedsResponse {
+  breeds: string[];
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const useFetchBreeds = (): FetchBreedsResponse => {
   const [breeds, setBreeds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);

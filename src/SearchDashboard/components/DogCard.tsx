@@ -1,5 +1,3 @@
-import React from 'react';
-
 /* Icons */
 import { Heart } from 'lucide-react';
 
@@ -24,7 +22,7 @@ interface DogCardProps {
   dog: Dog;
 }
 
-const DogCard: React.FC<DogCardProps> = ({ dog }) => {
+const DogCard = ({ dog }: DogCardProps) => {
   const { setFavorites } = useFavorites();
 
   const addToFavorites = (id: string): void => {
@@ -32,14 +30,12 @@ const DogCard: React.FC<DogCardProps> = ({ dog }) => {
   };
 
   return (
-    <Card className='flex flex-col justify-between rounded overflow-hidden shadow-2xl bg-green-400/10 w-80 h-full hover:scale-102 transition-transform duration-300'>
+    <Card className='flex flex-col justify-between rounded overflow-hidden shadow-lg w-80 h-full hover:scale-102 transition-transform duration-300'>
       <CardContent className='flex flex-col p-0 relative'>
         <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-10' />
-        <div
-          className='absolute top-0 right-0 p-1 m-2 cursor-pointer'
-          onClick={() => addToFavorites(dog.id)}>
-          <Heart className='h-6 w-6 shrink-0' />
-        </div>
+        <Badge className='absolute top-0 right-0 rounded-full --primary text-white hover:--primary m-2'>
+          AVAILABLE
+        </Badge>
         <img
           className='w-full h-58 object-cover'
           src={dog.img}
@@ -49,9 +45,11 @@ const DogCard: React.FC<DogCardProps> = ({ dog }) => {
       <CardHeader className='flex flex-col'>
         <div className='flex flex-row items-center justify-between w-full'>
           <CardTitle className='mr-4'>{dog.name}</CardTitle>
-          <Badge className='rounded-full bg-green-600 text-white hover:bg-green-600'>
-            AVAILABLE
-          </Badge>
+          <div
+            className='cursor-pointer'
+            onClick={() => addToFavorites(dog.id)}>
+            <Heart className='h-6 w-6 shrink-0 text-ring' />
+          </div>
         </div>
         <CardDescription>
           <p>

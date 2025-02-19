@@ -29,11 +29,5 @@
 
     "types": ["@testing-library/jest-dom"]
   },
-  "include": [
-    "vite.config.ts",
-    "**/*.ts",
-    "**/*.tsx"
-    // "**/**/*.ts",
-    // "**/**/*.tsx"
-  ]
+  "include": ["vite.config.ts", "**/*.ts", "**/*.tsx"]
 }

@@ -21,7 +21,6 @@ const LoginForm = () => {
 
   const blurInput = ({ field }: { field: 'name' | 'email' }) => {
     const formErrors: FormErrors = {};
-
     const capitalizedField = field.charAt(0).toUpperCase() + field.slice(1);
 
     if (field === 'name' && !name.trim()) {
@@ -83,7 +82,7 @@ const LoginForm = () => {
               Name
             </Label>
             <Input
-              className='invalid:border-red-600 invalid:ring-red-600'
+              className='invalid:border---destructive invalid:ring---destructive'
               id='name'
               type='text'
               value={name}
@@ -95,7 +94,7 @@ const LoginForm = () => {
               placeholder='Scooby Doo'
             />
             {errors?.name && (
-              <p className='text-red-600 font-medium mt-1 text-sm'>
+              <p className='text---destructive font-medium mt-1 text-sm'>
                 {errors?.name}
               </p>
             )}
@@ -106,7 +105,8 @@ const LoginForm = () => {
             </Label>
             <Input
               className={
-                errors?.email && 'invalid:border-red-600 invalid:ring-red-600'
+                errors?.email &&
+                'invalid:border---destructive invalid:ring---destructive'
               }
               id='email'
               type='email'
@@ -119,14 +119,14 @@ const LoginForm = () => {
               placeholder='dogluver@gmail.com'
             />
             {errors?.email && (
-              <p className='text-red-600 font-medium mt-1 text-sm'>
+              <p className='text---destructive font-medium mt-1 text-sm'>
                 {errors?.email}
               </p>
             )}
           </div>
           <Button
             variant='default'
-            className='mt-3 cursor-pointer bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700 rounded-full px-10'
+            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 rounded-full px-10'
             type='submit'
             disabled={loading}>
             Login

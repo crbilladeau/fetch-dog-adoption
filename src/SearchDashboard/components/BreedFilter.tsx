@@ -24,22 +24,22 @@ interface BreedFilterProps {
   breeds: string[];
   isLoading: boolean;
   selectedBreeds: string[];
-  setSelectedBreeds: (breeds: string[]) => void;
+  setSelectedBreeds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const BreedFilter: React.FC<BreedFilterProps> = ({
+const BreedFilter = ({
   breeds,
   isLoading,
   selectedBreeds,
   setSelectedBreeds,
-}) => {
+}: BreedFilterProps) => {
   const [openFilter, setOpenFilter] = useState(false);
-  const [value, setValue] = useState('');
+  const [value] = useState('');
 
-  const handleSelectBreed = (breed: string) => {
-    setSelectedBreeds((prevState: string[]) =>
+  const selectBreed = (breed: string) => {
+    setSelectedBreeds((prevState) =>
       prevState.includes(breed)
-        ? prevState.filter((b: string) => b !== breed)
+        ? prevState.filter((b) => b !== breed)
         : [...prevState, breed]
     );
   };
@@ -58,6 +58,20 @@ const BreedFilter: React.FC<BreedFilterProps> = ({
     }
   };
 
+  const selectedBreedsItem = (breed: string) => {
+    return (
+      <CommandItem key={breed} value={breed} onSelect={selectBreed}>
+        <Check
+          className={cn(
+            'mr-2 h-4 w-4',
+            selectedBreeds.includes(breed) ? 'opacity-100' : 'opacity-0'
+          )}
+        />
+        {breed}
+      </CommandItem>
+    );
+  };
+
   return (
     <Popover open={openFilter} onOpenChange={setOpenFilter}>
       <PopoverTrigger asChild>
@@ -71,7 +85,7 @@ const BreedFilter: React.FC<BreedFilterProps> = ({
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-[200px] p-0'>
+      <PopoverContent className='w-[350px] p-0'>
         <Command>
           <CommandInput placeholder='Search dog breeds' />
           <CommandList>
@@ -81,22 +95,7 @@ const BreedFilter: React.FC<BreedFilterProps> = ({
                 ?.filter((breed: string) =>
                   breed.toLowerCase().includes(value.toLowerCase())
                 )
-                .map((breed) => (
-                  <CommandItem
-                    key={breed}
-                    value={breed}
-                    onSelect={handleSelectBreed}>
-                    <Check
-                      className={cn(
-                        'mr-2 h-4 w-4',
-                        selectedBreeds.includes(breed)
-                          ? 'opacity-100'
-                          : 'opacity-0'
-                      )}
-                    />
-                    {breed}
-                  </CommandItem>
-                ))}
+                .map((breed) => selectedBreedsItem(breed))}
             </CommandGroup>
           </CommandList>
         </Command>
