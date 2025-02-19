@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router';
+import { useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router';
 
 /* Context */
 import { useAuth } from './context/AuthContext';
@@ -11,7 +12,27 @@ import SearchDashboard from './SearchDashboard/SearchDashboard';
 import { FavoritesProvider } from './context/FavoritesContext';
 
 function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('auth-session');
+    if (!token) {
+      return setIsAuthenticated(false);
+    }
+
+    const { expiration } = JSON.parse(token || '');
+
+    if (expiration > Date.now()) {
+      setIsAuthenticated(true);
+      navigate('/search');
+    } else {
+      localStorage.removeItem('auth-session');
+      setIsAuthenticated(false);
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <Routes>

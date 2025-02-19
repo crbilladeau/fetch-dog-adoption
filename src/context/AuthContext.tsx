@@ -5,8 +5,8 @@ import { loginUser } from '../api/auth';
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
   login: (email: string, password: string) => Promise<void>;
-  // logout: () => void;
   error: string | null;
 }
 
@@ -26,6 +26,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (response?.status === 200) {
         setIsAuthenticated(true);
+
+        const expiration = Date.now() + 60 * 60 * 1000;
+        localStorage.setItem('auth-session', JSON.stringify({ expiration }));
         navigate('/search');
       }
     } catch (error) {
@@ -37,7 +40,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, error }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, setIsAuthenticated, login, error }}>
       {children}
     </AuthContext.Provider>
   );

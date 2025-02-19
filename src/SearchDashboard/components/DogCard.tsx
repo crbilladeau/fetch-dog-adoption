@@ -1,5 +1,5 @@
 /* Icons */
-import { Heart } from 'lucide-react';
+import { Heart, Sparkles } from 'lucide-react';
 
 /* UI */
 import {
@@ -33,7 +33,8 @@ const DogCard = ({ dog }: DogCardProps) => {
     <Card className='flex flex-col justify-between rounded overflow-hidden shadow-lg w-80 h-full hover:scale-102 transition-transform duration-300'>
       <CardContent className='flex flex-col p-0 relative'>
         <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-10' />
-        <Badge className='absolute top-0 right-0 rounded-full --primary text-white hover:--primary m-2'>
+        <Badge className='absolute top-0 right-0 rounded-full --primary hover:--primary m-2'>
+          <Sparkles className='h-4 w-4 shrink-0 mr-1' />
           AVAILABLE
         </Badge>
         <img
@@ -48,7 +49,7 @@ const DogCard = ({ dog }: DogCardProps) => {
           <div
             className='cursor-pointer'
             onClick={() => addToFavorites(dog.id)}>
-            <Heart className='h-6 w-6 shrink-0 text-ring' />
+            <Heart className='h-6 w-6 shrink-0 text-destructive' />
           </div>
         </div>
         <CardDescription>
