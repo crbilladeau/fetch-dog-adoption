@@ -9,18 +9,53 @@ import BreedFilter from './components/BreedFilter';
 import PaginationControls from './components/PaginationControls';
 import DogsList from './components/DogsList';
 import SortDropdown from './components/SortDropdown';
+import LoadingSkeleton from './components/LoadingSkeleton';
 
-/* UI */
+/* Types */
+import { SearchParams } from '../hooks/types/SearchParams';
 
 const SearchDashboard = () => {
-  const [selectedBreeds, setSelectedBreeds] = useState<string[]>([]);
-  const [cursor, setCursor] = useState<string | null>(null);
-  // TODO: add setParams instead of cursor
-
-  const { breeds, isLoading: isLoadingBreeds } = useFetchBreeds();
-  const { dogs, next, prev } = useFetchDogs({
-    params: { breeds: selectedBreeds, from: cursor ?? undefined },
+  const [params, setParams] = useState<SearchParams>({
+    breeds: [],
+    minAge: undefined,
+    maxAge: undefined,
+    zipCodes: undefined,
+    size: 25,
+    from: undefined,
+    sort: { field: 'breed', order: 'asc' },
   });
+
+  const {
+    breeds,
+    isLoading: isLoadingBreeds,
+    isError: isErrorBreeds,
+  } = useFetchBreeds();
+  const {
+    dogs,
+    isLoading: isLoadingDogs,
+    isError: isErrorDogs,
+    next,
+    prev,
+  } = useFetchDogs({
+    params,
+  });
+
+  const isLoading = isLoadingBreeds || isLoadingDogs;
+  const isError = isErrorBreeds || isErrorDogs;
+
+  const renderEmptyOrList = () => {
+    if (isLoading) {
+      return <LoadingSkeleton />;
+    } else if (isError) {
+      return (
+        <div>
+          There was an error while fetching you some cute dogs. Try again later.
+        </div>
+      );
+    } else {
+      return <DogsList dogs={dogs} />;
+    }
+  };
 
   return (
     <div className='flex flex-col justify-center items-center'>
@@ -28,16 +63,16 @@ const SearchDashboard = () => {
         <BreedFilter
           breeds={breeds}
           isLoading={isLoadingBreeds}
-          selectedBreeds={selectedBreeds}
-          setSelectedBreeds={setSelectedBreeds}
+          selectedBreeds={params?.breeds ?? []}
+          setParams={setParams}
         />
       </div>
       <div className='self-end'>
-        <SortDropdown type='by' />
-        <SortDropdown type='order' />
+        <SortDropdown type='field' setParams={setParams} params={params} />
+        <SortDropdown type='order' setParams={setParams} params={params} />
       </div>
-      <DogsList dogs={dogs} />
-      <PaginationControls setCursor={setCursor} next={next} prev={prev} />
+      {renderEmptyOrList()}
+      <PaginationControls setParams={setParams} next={next} prev={prev} />
     </div>
   );
 };

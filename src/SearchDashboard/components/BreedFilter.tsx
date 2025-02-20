@@ -20,28 +20,36 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
+/* Types */
+import { SearchParams } from '../../hooks/types/SearchParams';
+
 interface BreedFilterProps {
   breeds: string[];
   isLoading: boolean;
   selectedBreeds: string[];
-  setSelectedBreeds: React.Dispatch<React.SetStateAction<string[]>>;
+  setParams: React.Dispatch<React.SetStateAction<SearchParams>>;
 }
 
 const BreedFilter = ({
   breeds,
   isLoading,
   selectedBreeds,
-  setSelectedBreeds,
+  setParams,
 }: BreedFilterProps) => {
   const [openFilter, setOpenFilter] = useState(false);
   const [value] = useState('');
 
   const selectBreed = (breed: string) => {
-    setSelectedBreeds((prevState) =>
-      prevState.includes(breed)
-        ? prevState.filter((b) => b !== breed)
-        : [...prevState, breed]
-    );
+    setParams((prevState) => {
+      const prevBreeds = prevState.breeds ?? [];
+
+      return {
+        ...prevState,
+        breeds: prevBreeds.includes(breed)
+          ? prevBreeds.filter((b) => b !== breed)
+          : [...prevBreeds, breed],
+      };
+    });
   };
 
   const chosenBreedsLabel = () => {

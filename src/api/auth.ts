@@ -12,11 +12,9 @@ export const loginUser = async (
     });
 
     return response;
-  } catch (error: unknown) {
+  } catch (error) {
     if (error instanceof Error) {
-      throw new Error(
-        'There was an error while logging you in. Please try again later.'
-      );
+      throw error;
     }
     throw new Error('An unknown error occurred during login');
   }

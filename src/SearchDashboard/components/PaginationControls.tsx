@@ -7,20 +7,23 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
+/* Types */
+import { SearchParams } from '../../hooks/types/SearchParams';
+
 interface PaginationControlsProps {
-  setCursor: (cursor: string | null) => void;
+  setParams: React.Dispatch<React.SetStateAction<SearchParams>>;
   next: string | null;
   prev: string | null;
 }
 
 const PaginationControls = ({
-  setCursor,
+  setParams,
   next,
   prev,
 }: PaginationControlsProps) => {
-  const handlePageClick = (cursor: string | null) => {
+  const selectPrevOrNext = (cursor: string | null) => {
     if (cursor) {
-      setCursor(cursor);
+      setParams((prevState) => ({ ...prevState, from: cursor }));
     }
   };
 
@@ -31,14 +34,14 @@ const PaginationControls = ({
           <PaginationPrevious
             className='cursor-pointer'
             isActive={!!prev}
-            onClick={() => handlePageClick(prev)}
+            onClick={() => selectPrevOrNext(prev)}
           />
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
             className='cursor-pointer'
             isActive={!!next}
-            onClick={() => handlePageClick(next)}
+            onClick={() => selectPrevOrNext(next)}
           />
         </PaginationItem>
       </PaginationContent>

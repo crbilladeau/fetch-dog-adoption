@@ -29,6 +29,16 @@ const DogCard = ({ dog }: DogCardProps) => {
     setFavorites((prevState: string[]) => [...prevState, id]);
   };
 
+  const formatAge = (age: number) => {
+    if (age < 1) {
+      return '< 1 year old';
+    } else if (age === 1) {
+      return '1 year old';
+    } else {
+      return `${age} years old`;
+    }
+  };
+
   return (
     <Card className='flex flex-col justify-between rounded overflow-hidden shadow-lg w-80 h-full hover:scale-102 transition-transform duration-300'>
       <CardContent className='flex flex-col p-0 relative'>
@@ -54,7 +64,7 @@ const DogCard = ({ dog }: DogCardProps) => {
         </div>
         <CardDescription>
           <p>
-            {dog.breed}, {dog.age} {dog.age > 1 ? 'years' : 'year'} old
+            {dog.breed}, {formatAge(dog.age)}
           </p>
         </CardDescription>
       </CardHeader>

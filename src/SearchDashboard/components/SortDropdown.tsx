@@ -16,14 +16,47 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
+/* Types */
+import { SearchParams } from '../../hooks/types/SearchParams';
+
 const BY_OPTIONS = ['breed', 'age', 'name'];
 const ORDER_OPTIONS = ['asc', 'desc'];
 
-const SortDropdown = ({ type }: { type: 'by' | 'order' }) => {
+interface SortDropdownProps {
+  type: 'field' | 'order';
+  setParams: React.Dispatch<React.SetStateAction<SearchParams>>;
+  params: SearchParams;
+}
+
+const SortDropdown = ({ type, setParams, params }: SortDropdownProps) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
 
   const OPTIONS = type === 'order' ? ORDER_OPTIONS : BY_OPTIONS;
+  const value = params?.sort?.[type] ?? '';
+
+  const selectOption = (currentValue: string) => {
+    setParams((prevState) => {
+      const newSort = prevState.sort
+        ? { ...prevState.sort }
+        : { field: '', order: '' };
+      // if they deselect the current value, reset the sort back to an empty string
+      if (currentValue === value) {
+        if (type === 'field') {
+          newSort.field = '';
+        } else if (type === 'order') {
+          newSort.order = '';
+        }
+      } else {
+        if (type === 'field') {
+          newSort.field = currentValue;
+        } else if (type === 'order') {
+          newSort.order = currentValue;
+        }
+      }
+      return { ...prevState, sort: newSort };
+    });
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -45,10 +78,7 @@ const SortDropdown = ({ type }: { type: 'by' | 'order' }) => {
                 <CommandItem
                   key={option}
                   value={option}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? '' : currentValue);
-                    setOpen(false);
-                  }}>
+                  onSelect={(currentValue) => selectOption(currentValue)}>
                   {option}
                   <Check
                     className={cn(

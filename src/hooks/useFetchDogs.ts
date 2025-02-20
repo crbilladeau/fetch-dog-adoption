@@ -2,25 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from '../api/config';
 
 /* Types */
-import { Dog } from '../SearchDashboard/types/Dog';
-
-interface SearchParams {
-  breeds?: string[];
-  minAge?: number;
-  maxAge?: number;
-  zipCodes?: string[];
-  sort?: { field: string; order: string };
-  size?: number;
-  from?: string;
-}
-
-interface FetchDogsResponse {
-  dogs: Dog[];
-  isLoading: boolean;
-  isError: boolean;
-  next: string | null;
-  prev: string | null;
-}
+import { FetchDogsResponse, SearchParams } from './types/SearchParams';
 
 const useFetchDogs = ({
   params,
@@ -29,13 +11,13 @@ const useFetchDogs = ({
 }): FetchDogsResponse => {
   const [dogs, setDogs] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<Error | null>(null);
   const [next, setNext] = useState<string | null>(null);
   const [prev, setPrev] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDogs = async () => {
-      setIsError(false);
+      setIsError(null);
       setIsLoading(true);
 
       try {
@@ -47,8 +29,8 @@ const useFetchDogs = ({
             zipCodes: params?.zipCodes,
             size: params?.size,
             from: params?.from,
-            sort: `${params?.sort?.field ?? 'breed'}:${
-              params?.sort?.order ?? 'asc'
+            sort: `${params?.sort?.field || 'breed'}:${
+              params?.sort?.order || 'asc'
             }`,
           },
         });
@@ -76,7 +58,11 @@ const useFetchDogs = ({
         }
       } catch (error) {
         console.error(error);
-        setIsError(true);
+        if (error instanceof Error) {
+          setIsError(error);
+        } else {
+          setIsError(new Error('An unknown error occurred'));
+        }
       } finally {
         setIsLoading(false);
       }
