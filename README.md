@@ -1,4 +1,4 @@
-# Fetch Dog Adoption Take Home
+# Fetch Dog Adoption
 
 Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Vite](https://vitejs.dev/), and [TypeScript](https://www.typescriptlang.org/).
 
