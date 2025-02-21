@@ -14,7 +14,7 @@ const SkeletonCard = () => {
   );
 };
 
-const LoadingSkeleton = () => {
+const LoadingDogsSkeleton = () => {
   return (
     <div className='grid grid-cols-3 gap-8 my-6 mx-auto'>
       {Array.from({ length: 6 }).map((_, i) => (
@@ -24,4 +24,4 @@ const LoadingSkeleton = () => {
   );
 };
 
-export default LoadingSkeleton;
+export default LoadingDogsSkeleton;

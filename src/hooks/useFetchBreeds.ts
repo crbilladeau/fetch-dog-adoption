@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/config';
 
-interface FetchBreedsResponse {
-  breeds: string[];
-  isLoading: boolean;
-  isError: boolean;
-}
+/* Types */
+import { FetchBreedsResponse } from './types/FetchBreeds';
 
 const useFetchBreeds = (): FetchBreedsResponse => {
   const [breeds, setBreeds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBreeds = async () => {
-      setIsError(false);
+      setIsError(null);
       setIsLoading(true);
 
       try {
@@ -23,7 +20,11 @@ const useFetchBreeds = (): FetchBreedsResponse => {
         setBreeds(response?.data);
       } catch (error) {
         console.error(error);
-        setIsError(true);
+        if (error instanceof Error) {
+          setIsError(error.message);
+        } else {
+          throw error;
+        }
       } finally {
         setIsLoading(false);
       }

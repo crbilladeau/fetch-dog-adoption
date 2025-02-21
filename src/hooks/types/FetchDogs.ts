@@ -1,7 +1,7 @@
 /* Types */
-import { Dog } from '../../SearchDashboard/types/Dog';
+import { Dog } from '../../types/Dog';
 
-export interface SearchParams {
+export interface DogsSearchParams {
   breeds?: string[];
   minAge?: number;
   maxAge?: number;
@@ -14,7 +14,7 @@ export interface SearchParams {
 export interface FetchDogsResponse {
   dogs: Dog[];
   isLoading: boolean;
-  isError: Error | null;
+  isError: string | null;
   next: string | null;
   prev: string | null;
 }

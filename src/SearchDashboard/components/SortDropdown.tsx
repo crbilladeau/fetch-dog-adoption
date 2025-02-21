@@ -17,15 +17,15 @@ import {
 } from '@/components/ui/popover';
 
 /* Types */
-import { SearchParams } from '../../hooks/types/SearchParams';
+import { DogsSearchParams } from '../../hooks/types/FetchDogs';
 
 const BY_OPTIONS = ['breed', 'age', 'name'];
 const ORDER_OPTIONS = ['asc', 'desc'];
 
 interface SortDropdownProps {
   type: 'field' | 'order';
-  setParams: React.Dispatch<React.SetStateAction<SearchParams>>;
-  params: SearchParams;
+  setParams: React.Dispatch<React.SetStateAction<DogsSearchParams>>;
+  params: DogsSearchParams;
 }
 
 const SortDropdown = ({ type, setParams, params }: SortDropdownProps) => {

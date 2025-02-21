@@ -82,7 +82,11 @@ const LoginForm = () => {
               Name
             </Label>
             <Input
-              className='invalid:border---destructive invalid:ring---destructive'
+              className={
+                errors?.name
+                  ? 'border-destructive text-popover-foreground font-medium focus:bg-accent'
+                  : 'border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
+              }
               id='name'
               type='text'
               value={name}
@@ -94,7 +98,7 @@ const LoginForm = () => {
               placeholder='Scooby Doo'
             />
             {errors?.name && (
-              <p className='text---destructive font-medium mt-1 text-sm'>
+              <p className='text-destructive font-medium mt-1 text-sm'>
                 {errors?.name}
               </p>
             )}
@@ -105,8 +109,9 @@ const LoginForm = () => {
             </Label>
             <Input
               className={
-                errors?.email &&
-                'invalid:border---destructive invalid:ring---destructive'
+                errors?.email
+                  ? 'border-destructive text-popover-foreground font-medium focus:bg-accent'
+                  : 'border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
               }
               id='email'
               type='email'
@@ -119,14 +124,14 @@ const LoginForm = () => {
               placeholder='dogluver@gmail.com'
             />
             {errors?.email && (
-              <p className='text---destructive font-medium mt-1 text-sm'>
+              <p className='text-destructive font-medium mt-1 text-sm'>
                 {errors?.email}
               </p>
             )}
           </div>
           <Button
             variant='default'
-            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 rounded-full px-10'
+            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 rounded-full px-10 text-popover-foreground font-bold outline-2 outline-popover-foreground'
             type='submit'
             disabled={loading}>
             Login

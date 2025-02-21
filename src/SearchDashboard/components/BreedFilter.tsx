@@ -21,13 +21,13 @@ import {
 import { cn } from '@/lib/utils';
 
 /* Types */
-import { SearchParams } from '../../hooks/types/SearchParams';
+import { DogsSearchParams } from '../../hooks/types/FetchDogs';
 
 interface BreedFilterProps {
   breeds: string[];
   isLoading: boolean;
   selectedBreeds: string[];
-  setParams: React.Dispatch<React.SetStateAction<SearchParams>>;
+  setParams: React.Dispatch<React.SetStateAction<DogsSearchParams>>;
 }
 
 const BreedFilter = ({
@@ -88,7 +88,7 @@ const BreedFilter = ({
           role='combobox'
           aria-expanded={openFilter}
           disabled={isLoading}
-          className='w-[350px] justify-between'>
+          className='w-[350px] justify-between py-5 border-2 border-popover-foreground'>
           {chosenBreedsLabel()}
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>

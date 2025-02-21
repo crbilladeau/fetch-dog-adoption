@@ -5,17 +5,17 @@ import useFetchBreeds from '../hooks/useFetchBreeds';
 import useFetchDogs from '../hooks/useFetchDogs';
 
 /* Components */
+import LocationSearch from './components/LocationSearch';
 import BreedFilter from './components/BreedFilter';
 import PaginationControls from './components/PaginationControls';
 import DogsList from './components/DogsList';
 import SortDropdown from './components/SortDropdown';
-import LoadingSkeleton from './components/LoadingSkeleton';
 
 /* Types */
-import { SearchParams } from '../hooks/types/SearchParams';
+import { DogsSearchParams } from '../hooks/types/FetchDogs';
 
 const SearchDashboard = () => {
-  const [params, setParams] = useState<SearchParams>({
+  const [params, setParams] = useState<DogsSearchParams>({
     breeds: [],
     minAge: undefined,
     maxAge: undefined,
@@ -40,39 +40,44 @@ const SearchDashboard = () => {
     params,
   });
 
-  const isLoading = isLoadingBreeds || isLoadingDogs;
-  const isError = isErrorBreeds || isErrorDogs;
-
-  const renderEmptyOrList = () => {
-    if (isLoading) {
-      return <LoadingSkeleton />;
-    } else if (isError) {
-      return (
-        <div>
-          There was an error while fetching you some cute dogs. Try again later.
-        </div>
-      );
-    } else {
-      return <DogsList dogs={dogs} />;
-    }
-  };
+  const disablePagination =
+    isLoadingBreeds || isLoadingDogs || dogs.length < 25;
 
   return (
     <div className='flex flex-col justify-center items-center'>
-      <div className='h-[50vh] w-full flex items-center justify-center'>
-        <BreedFilter
-          breeds={breeds}
-          isLoading={isLoadingBreeds}
-          selectedBreeds={params?.breeds ?? []}
-          setParams={setParams}
-        />
+      <div className='h-[50vh] w-full flex flex-col items-center justify-center'>
+        <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
+          Every dog deserves a home.
+        </h1>
+        <h2 className='text-2xl font-normal mb-14 text-center text-popover-foreground'>
+          The perfect pup is just one search away.
+        </h2>
+        <div className='w-full flex flex-row items-center justify-center'>
+          <LocationSearch setParams={setParams} />
+          <BreedFilter
+            breeds={breeds}
+            isLoading={isLoadingBreeds}
+            selectedBreeds={params?.breeds ?? []}
+            setParams={setParams}
+          />
+        </div>
       </div>
-      <div className='self-end'>
+      <div className='flex flex-row items-center self-end'>
+        <p className='font-semibold'>Sort filters:</p>
         <SortDropdown type='field' setParams={setParams} params={params} />
         <SortDropdown type='order' setParams={setParams} params={params} />
       </div>
-      {renderEmptyOrList()}
-      <PaginationControls setParams={setParams} next={next} prev={prev} />
+      <DogsList
+        dogs={dogs}
+        isError={isErrorBreeds || isErrorDogs}
+        isLoading={isLoadingBreeds || isLoadingDogs}
+      />
+      <PaginationControls
+        setParams={setParams}
+        next={next}
+        prev={prev}
+        disabled={disablePagination}
+      />
     </div>
   );
 };
