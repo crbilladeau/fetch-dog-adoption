@@ -38,14 +38,14 @@ const LocationSearch = ({ setParams }: LocationSearchProps) => {
   };
 
   return (
-    <div className='w-full max-w-[400px] mr-3 relative'>
+    <div className='w-full max-w-[500px] mr-3 relative'>
       <Command className='border-2 border-popover-foreground focus-within:bg-accent text-foreground font-semibold'>
         <CommandInput
           placeholder='Enter city, state, or zipcode'
           onValueChange={handleValueChange}
         />
         {value && (
-          <CommandList className='absolute left-0 top-full w-full max-h-60 overflow-y-auto border border-gray-200 bg-white shadow-lg rounded-md z-50 text-foreground font-semibold'>
+          <CommandList className='absolute left-0 top-full w-full max-h-60 overflow-y-auto border-1 border-border shadow-lg rounded-md z-50 text-foreground font-semibold'>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading='Suggestions'>
               {locations?.slice(0, 5).map((location) => {

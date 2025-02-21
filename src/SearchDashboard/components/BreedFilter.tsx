@@ -97,7 +97,9 @@ const BreedFilter = ({
         <Command>
           <CommandInput placeholder='Search dog breeds' />
           <CommandList>
-            <CommandEmpty>No breeds found.</CommandEmpty>
+            <CommandEmpty>
+              <p className='font-medium text-foreground'>No breeds found.</p>
+            </CommandEmpty>
             <CommandGroup>
               {breeds
                 ?.filter((breed: string) =>

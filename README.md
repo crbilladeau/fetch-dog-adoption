@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# Fetch Dog Adoption Take Home
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Vite](https://vitejs.dev/), and [TypeScript](https://www.typescriptlang.org/).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for dogs and filter by breed and location
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository
+2. Install dependencies with `npm install` or `yarn`
+3. Start the development server with `npm run dev` or `yarn dev`
+4. Open [http://localhost:5173](http://localhost:5173) with your browser to see the application
 
-- Configure the top-level `parserOptions` property like this:
+## DEV TODOS:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- [ ] Fix base color theme / components to match
+- [ ] Fix issue with search dropdown
+- [ ] Add favorites functionality and context (popover flyout)
+- [ ] Add match functionality after favorites are added
+- [ ] Add search filters by min/max age
+- [ ] Fix error handling; if request is 401 logout the user
+- [ ] Fix mobile responsiveness
+- [ ] Tests
+- [ ] Optional: add an account page with name and email

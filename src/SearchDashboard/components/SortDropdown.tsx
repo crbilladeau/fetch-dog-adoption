@@ -65,7 +65,7 @@ const SortDropdown = ({ type, setParams, params }: SortDropdownProps) => {
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className='w-[150px] justify-between'>
+          className='w-[150px] justify-between border-2 border-popover-foreground'>
           {value ? OPTIONS.find((option) => option === value) : `Sort ${type}`}
           <ChevronsUpDown className='opacity-50' />
         </Button>

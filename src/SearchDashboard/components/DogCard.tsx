@@ -1,5 +1,5 @@
 /* Icons */
-import { Heart, Sparkles } from 'lucide-react';
+import { Heart, PawPrint } from 'lucide-react';
 
 /* UI */
 import {
@@ -44,7 +44,7 @@ const DogCard = ({ dog }: DogCardProps) => {
       <CardContent className='flex flex-col p-0 relative'>
         <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-10' />
         <Badge className='absolute top-0 right-0 rounded-full bg-primary hover:bg-primary m-2'>
-          <Sparkles className='h-4 w-4 shrink-0 mr-1' />
+          <PawPrint className='h-4 w-4 shrink-0 mr-1' />
           AVAILABLE
         </Badge>
         <img
