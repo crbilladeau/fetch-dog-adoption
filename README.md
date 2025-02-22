@@ -16,7 +16,6 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 ## DEV TODOS:
 
 - [ ] Fix base color theme / components to match
-- [ ] Fix issue with search dropdown
 - [ ] Add favorites functionality and context (popover flyout)
 - [ ] Add match functionality after favorites are added
 - [ ] Add search filters by min/max age
@@ -24,3 +23,4 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 - [ ] Fix mobile responsiveness
 - [ ] Tests
 - [ ] Optional: add an account page with name and email
+- [x] Fix issue with search dropdown

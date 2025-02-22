@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from '../api/config';
+import axios from '../../api/config';
 
 /* Types */
-import { FetchDogsResponse, DogsSearchParams } from './types/FetchDogs';
+import { FetchDogsResponse, DogsSearchParams } from '../types/FetchDogs';
 
 export const DEFAULT_SORT = { field: 'breed', order: 'asc' };
 

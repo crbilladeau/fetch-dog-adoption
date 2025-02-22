@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import axios from '../api/config';
+import axios from '../../api/config';
 
 /* Types */
-import { FetchBreedsResponse } from './types/FetchBreeds';
+import { FetchBreedsResponse } from '../types/FetchBreeds';
 
 const useFetchBreeds = (): FetchBreedsResponse => {
   const [breeds, setBreeds] = useState<string[]>([]);

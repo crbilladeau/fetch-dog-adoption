@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 /* Hooks */
-import useFetchBreeds from '../hooks/useFetchBreeds';
-import useFetchDogs from '../hooks/useFetchDogs';
+import useFetchBreeds from '../hooks/fetchers/useFetchBreeds';
+import useFetchDogs from '../hooks/fetchers/useFetchDogs';
 
 /* Components */
 import LocationSearch from './components/LocationSearch';
