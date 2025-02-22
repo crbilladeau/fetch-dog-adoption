@@ -47,7 +47,7 @@ const SearchDashboard = () => {
   return (
     <div className='flex flex-col justify-center items-center px-4 relative mx-auto'>
       <FavoritesFlyout />
-      <div className='h-[50vh] w-full flex flex-col items-center justify-center'>
+      <div className='h-[100vh] sm:h-[50vh] w-full flex flex-col items-center justify-center'>
         <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
           Every dog deserves a home.
         </h1>

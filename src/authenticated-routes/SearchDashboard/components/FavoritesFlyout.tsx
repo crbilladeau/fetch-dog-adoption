@@ -101,7 +101,7 @@ const FavoritesFlyout = () => {
   return (
     <div className='scroll-auto'>
       <Sheet>
-        <SheetTrigger className='p-4 cursor-pointer absolute top-0 right-0 z-50 bg-background m-4 px-4 flex items-center'>
+        <SheetTrigger className='p-4 cursor-pointer absolute top-0 right-0 z-50 m-4 px-4 flex items-center'>
           <span className='text-popover-foreground font-semibold text-lg'>
             Favorites
           </span>
