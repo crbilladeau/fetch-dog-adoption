@@ -15,12 +15,12 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 
 ## DEV TODOS:
 
-- [ ] Add favorites functionality and context (popover flyout)
-- [ ] Add match functionality after favorites are added
 - [ ] Add search filters by min/max age
 - [ ] Fix error handling; if request is 401 logout the user
 - [ ] Fix base color theme / components to match
 - [ ] Tests
 - [ ] Optional: add an account page with name and email
+- [x] Add favorites functionality and context (popover flyout)
+- [x] Add match functionality after favorites are added
 - [x] Fix mobile responsiveness
 - [x] Fix issue with search dropdown

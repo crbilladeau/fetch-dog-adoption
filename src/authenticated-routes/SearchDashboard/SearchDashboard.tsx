@@ -10,6 +10,7 @@ import BreedFilter from './components/BreedFilter';
 import PaginationControls from './components/PaginationControls';
 import DogsList from './DogsList';
 import SortDropdown from './components/SortDropdown';
+import FavoritesFlyout from './components/FavoritesFlyout';
 
 /* Types */
 import { DogsSearchParams } from '../../hooks/types/FetchDogs';
@@ -44,12 +45,13 @@ const SearchDashboard = () => {
     isLoadingBreeds || isLoadingDogs || dogs.length < 25;
 
   return (
-    <div className='flex flex-col justify-center items-center px-4'>
+    <div className='flex flex-col justify-center items-center px-4 relative mx-auto'>
+      <FavoritesFlyout />
       <div className='h-[50vh] w-full flex flex-col items-center justify-center'>
         <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
           Every dog deserves a home.
         </h1>
-        <h2 className='text-2xl font-normal mb-14 text-center text-popover-foreground'>
+        <h2 className='text-2xl font-normal mb-14 text-center'>
           The perfect pup is just one search away.
         </h2>
         <div className='w-full flex flex-col sm:flex-row items-center justify-center'>

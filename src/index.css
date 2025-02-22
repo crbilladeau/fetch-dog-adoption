@@ -24,9 +24,10 @@
   --border: hsl(160 30% 82%);
   --input: hsl(160 30% 50%);
   --ring: hsl(160 84% 63%);
+  --hover: hsl(160, 65%, 54%);
   --radius: 0.5rem;
 }
-.dark {
+/* .dark {
   --background: hsl(160 50% 10%);
   --foreground: hsl(160 5% 98%);
   --card: hsl(160 50% 10%);
@@ -47,7 +48,7 @@
   --input: hsl(160 30% 50%);
   --ring: hsl(160 84% 63%);
   --radius: 0.5rem;
-}
+} */
 
 @theme inline {
   --color-background: var(--background);
@@ -70,6 +71,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-hover: var(--hover);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);

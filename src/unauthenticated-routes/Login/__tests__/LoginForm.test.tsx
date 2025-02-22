@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import axiosInstance from '../../../api/config';
 import { MemoryRouter } from 'react-router';
 
-import LoginForm from '../LoginForm';
+import LoginForm from '../components/LoginForm';
 import { AuthProvider } from '../../../context/AuthContext';
 const mockUseNavigate = jest.fn();
 

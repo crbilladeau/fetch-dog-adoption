@@ -6,10 +6,10 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-import FormErrors from './types/FormErrors';
+import FormErrors from '../types/FormErrors';
 
 /* Context */
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 const LoginForm = () => {
   const [name, setName] = useState<string>('');
@@ -131,7 +131,7 @@ const LoginForm = () => {
           </div>
           <Button
             variant='default'
-            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 rounded-full px-10 text-popover-foreground font-bold outline-2 outline-popover-foreground'
+            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 px-10 text-popover-foreground font-bold outline-2 outline-popover-foreground hover:bg-hover'
             type='submit'
             disabled={loading}>
             Login
