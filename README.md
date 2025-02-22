@@ -2,7 +2,7 @@
 
 Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Vite](https://vitejs.dev/), and [TypeScript](https://www.typescriptlang.org/).
 
-## [Live Demo](tbd)
+## [View the Live Demo 🐕](https://adopt-pups.netlify.app/)
 
 ## Features
 
