@@ -2,8 +2,8 @@
 import { Dog } from '../../types/Dog';
 
 /* Components */
-import DogCard from './DogCard';
-import LoadingDogsSkeleton from './LoadingDogsSkeleton';
+import DogCard from './components/DogCard';
+import LoadingDogsSkeleton from '../components/LoadingDogsSkeleton';
 
 interface DogsListProps {
   dogs: Dog[];

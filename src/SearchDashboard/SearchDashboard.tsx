@@ -8,7 +8,7 @@ import useFetchDogs from '../hooks/fetchers/useFetchDogs';
 import LocationSearch from './components/LocationSearch';
 import BreedFilter from './components/BreedFilter';
 import PaginationControls from './components/PaginationControls';
-import DogsList from './components/DogsList';
+import DogsList from './DogsList/DogsList';
 import SortDropdown from './components/SortDropdown';
 
 /* Types */

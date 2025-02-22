@@ -13,10 +13,10 @@ import {
 import { Badge } from '@/components/ui/badge';
 
 /* Hooks */
-import { useFavorites } from '../../context/FavoritesContext';
+import { useFavorites } from '../../../context/FavoritesContext';
 
 /* Types */
-import { Dog } from '../../types/Dog';
+import { Dog } from '../../../types/Dog';
 
 interface DogCardProps {
   dog: Dog;
