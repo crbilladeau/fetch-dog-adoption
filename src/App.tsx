@@ -5,8 +5,8 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router';
 import { useAuth } from './context/AuthContext';
 
 /* Components */
-import Login from './Login/Login';
-import SearchDashboard from './SearchDashboard/SearchDashboard';
+import Login from './Login';
+import SearchDashboard from './SearchDashboard';
 
 /* Context */
 import { FavoritesProvider } from './context/FavoritesContext';

@@ -3,7 +3,7 @@ import { Dog } from '../../types/Dog';
 
 /* Components */
 import DogCard from './components/DogCard';
-import LoadingDogsSkeleton from '../components/LoadingDogsSkeleton';
+import LoadingDogsSkeleton from './components/LoadingDogsSkeleton';
 
 interface DogsListProps {
   dogs: Dog[];
