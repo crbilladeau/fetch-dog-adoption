@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 /* Hooks */
-import useFetchBreeds from '../hooks/fetchers/useFetchBreeds';
-import useFetchDogs from '../hooks/fetchers/useFetchDogs';
+import useFetchBreeds from '../../hooks/fetchers/useFetchBreeds';
+import useFetchDogs from '../../hooks/fetchers/useFetchDogs';
 
 /* Components */
 import LocationSearch from './components/LocationSearch';
@@ -12,7 +12,7 @@ import DogsList from './DogsList';
 import SortDropdown from './components/SortDropdown';
 
 /* Types */
-import { DogsSearchParams } from '../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../hooks/types/FetchDogs';
 
 const SearchDashboard = () => {
   const [params, setParams] = useState<DogsSearchParams>({

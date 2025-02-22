@@ -1,10 +1,10 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axiosInstance from '../../api/config';
+import axiosInstance from '../../../api/config';
 import { MemoryRouter } from 'react-router';
 
 import LoginForm from '../LoginForm';
-import { AuthProvider } from '../../context/AuthContext';
+import { AuthProvider } from '../../../context/AuthContext';
 const mockUseNavigate = jest.fn();
 
 jest.mock('react-router', () => ({

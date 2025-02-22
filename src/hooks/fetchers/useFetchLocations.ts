@@ -22,7 +22,7 @@ const useFetchLocations = ({
 }: FetchLocationsParams): FetchLocationsResponse => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<string | null>(null);
 
   const parseQuery = (query: string): ParsedQuery => {
     // test for if the query is a zip code
@@ -51,8 +51,7 @@ const useFetchLocations = ({
 
   const fetchLocations = async () => {
     setIsLoading(true);
-    setIsError(false);
-    setLocations([]);
+    setIsError(null);
 
     try {
       if (!query) return;
@@ -74,7 +73,11 @@ const useFetchLocations = ({
       }
     } catch (error) {
       console.error(error);
-      setIsError(true);
+      if (error instanceof Error) {
+        setIsError(error.message);
+      } else {
+        throw error;
+      }
     } finally {
       setIsLoading(false);
     }

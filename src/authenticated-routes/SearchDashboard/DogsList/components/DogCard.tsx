@@ -14,10 +14,10 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 
 /* Hooks */
-import { useFavorites } from '../../../context/FavoritesContext';
+import { useFavorites } from '../../../../context/FavoritesContext';
 
 /* Types */
-import { Dog } from '../../../types/Dog';
+import { Dog } from '../../../../types/Dog';
 
 interface DogCardProps {
   dog: Dog;

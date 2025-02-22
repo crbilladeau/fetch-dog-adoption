@@ -11,11 +11,11 @@ import {
 } from '@/components/ui/command';
 
 /* Hooks */
-import useFetchLocations from '../../hooks/fetchers/useFetchLocations';
-import useDebounce from '../../hooks/util/useDebounce';
+import useFetchLocations from '../../../hooks/fetchers/useFetchLocations';
+import useDebounce from '../../../hooks/util/useDebounce';
 
 /* Types */
-import { DogsSearchParams } from '../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../../hooks/types/FetchDogs';
 
 interface LocationSearchProps {
   setParams: React.Dispatch<React.SetStateAction<DogsSearchParams>>;

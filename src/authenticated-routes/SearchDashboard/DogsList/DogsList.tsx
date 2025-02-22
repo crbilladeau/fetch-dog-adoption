@@ -1,5 +1,5 @@
 /* Types */
-import { Dog } from '../../types/Dog';
+import { Dog } from '../../../types/Dog';
 
 /* Components */
 import DogCard from './components/DogCard';

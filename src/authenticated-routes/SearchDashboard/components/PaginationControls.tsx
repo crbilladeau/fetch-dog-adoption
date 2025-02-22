@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/pagination';
 
 /* Types */
-import { DogsSearchParams } from '../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../../hooks/types/FetchDogs';
 
 interface PaginationControlsProps {
   setParams: React.Dispatch<React.SetStateAction<DogsSearchParams>>;

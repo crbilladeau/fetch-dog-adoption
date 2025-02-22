@@ -7,7 +7,7 @@ import { useAuth } from './context/AuthContext';
 
 /* Components */
 import Login from './Login';
-import SearchDashboard from './SearchDashboard';
+import SearchDashboard from './authenticated-routes/SearchDashboard';
 
 /* Context */
 import { FavoritesProvider } from './context/FavoritesContext';

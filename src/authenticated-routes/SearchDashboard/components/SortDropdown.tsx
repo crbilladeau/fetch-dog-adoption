@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/popover';
 
 /* Types */
-import { DogsSearchParams } from '../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../../hooks/types/FetchDogs';
 
 const BY_OPTIONS = ['breed', 'age', 'name'];
 const ORDER_OPTIONS = ['asc', 'desc'];

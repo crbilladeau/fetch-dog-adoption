@@ -1,14 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 
+/* API */
 import { loginUser } from '../api/auth';
 
-interface AuthContextType {
-  isAuthenticated: boolean;
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  login: (email: string, password: string) => Promise<void>;
-  error: string | null;
-}
+/* Types */
+import { AuthContextType } from './types/AuthContextTypes';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

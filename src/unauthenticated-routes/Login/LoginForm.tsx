@@ -9,7 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import FormErrors from './types/FormErrors';
 
 /* Context */
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginForm = () => {
   const [name, setName] = useState<string>('');

@@ -9,5 +9,5 @@ export interface FetchLocationsParams {
 export interface FetchLocationsResponse {
   locations: Location[];
   isLoading: boolean;
-  isError: boolean;
+  isError: string | null;
 }
