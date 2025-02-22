@@ -20,8 +20,8 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 
 ## DEV TODOS:
 
-- [ ] Add search filters by min/max age
 - [ ] Tests
+- [x] Add search filters by min/max age
 - [x] Add favorites functionality and context (popover flyout)
 - [x] Add match functionality after favorites are added
 - [x] Fix mobile responsiveness
