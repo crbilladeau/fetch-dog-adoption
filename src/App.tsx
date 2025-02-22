@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router';
+import { Toaster } from 'sonner';
 
 /* Context */
 import { useAuth } from './context/AuthContext';
@@ -42,6 +43,7 @@ function App() {
         element={
           isAuthenticated ? (
             <FavoritesProvider>
+              <Toaster richColors />
               <SearchDashboard />
             </FavoritesProvider>
           ) : (

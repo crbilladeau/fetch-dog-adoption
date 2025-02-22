@@ -44,7 +44,7 @@ const SearchDashboard = () => {
     isLoadingBreeds || isLoadingDogs || dogs.length < 25;
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center px-4'>
       <div className='h-[50vh] w-full flex flex-col items-center justify-center'>
         <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
           Every dog deserves a home.
@@ -52,7 +52,7 @@ const SearchDashboard = () => {
         <h2 className='text-2xl font-normal mb-14 text-center text-popover-foreground'>
           The perfect pup is just one search away.
         </h2>
-        <div className='w-full flex flex-row items-center justify-center'>
+        <div className='w-full flex flex-col sm:flex-row items-center justify-center'>
           <LocationSearch setParams={setParams} />
           <BreedFilter
             breeds={breeds}
@@ -62,7 +62,7 @@ const SearchDashboard = () => {
           />
         </div>
       </div>
-      <div className='flex flex-row items-center self-end'>
+      <div className='flex flex-col sm:flex-row items-center self-end'>
         <p className='font-semibold'>Sort filters:</p>
         <SortDropdown type='field' setParams={setParams} params={params} />
         <SortDropdown type='order' setParams={setParams} params={params} />

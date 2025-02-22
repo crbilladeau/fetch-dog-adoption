@@ -88,7 +88,7 @@ const BreedFilter = ({
           role='combobox'
           aria-expanded={openFilter}
           disabled={isLoading}
-          className='w-[350px] justify-between py-5 border-2 border-popover-foreground'>
+          className='w-full max-w-[500px] sm:max-w-[350px] justify-between py-5 border-2 border-popover-foreground'>
           {chosenBreedsLabel()}
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>

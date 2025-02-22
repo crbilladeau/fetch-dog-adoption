@@ -60,7 +60,7 @@ const SortDropdown = ({ type, setParams, params }: SortDropdownProps) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild className='mx-2'>
+      <PopoverTrigger asChild className='m-1'>
         <Button
           variant='outline'
           role='combobox'

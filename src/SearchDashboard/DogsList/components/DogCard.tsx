@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { toast } from 'sonner';
 
 /* Hooks */
 import { useFavorites } from '../../../context/FavoritesContext';
@@ -23,10 +24,29 @@ interface DogCardProps {
 }
 
 const DogCard = ({ dog }: DogCardProps) => {
-  const { setFavorites } = useFavorites();
+  const { favorites, setFavorites } = useFavorites();
 
-  const addToFavorites = (id: string): void => {
-    setFavorites((prevState: string[]) => [...prevState, id]);
+  const addToFavorites = (dog: Dog): void => {
+    const alreadyFavorited = favorites.some((f) => f.id === dog.id);
+
+    // alert
+    toast.success(
+      `${dog.name}, ${dog.breed} ${
+        alreadyFavorited ? 'removed from' : 'added to'
+      } favorites`
+    );
+
+    setFavorites((prevState) => {
+      let newFavorites;
+      if (alreadyFavorited) {
+        newFavorites = prevState.filter((f) => f.id !== dog.id);
+      } else {
+        newFavorites = [...prevState, dog];
+      }
+      // save to local storage to persist da doggies
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      return newFavorites;
+    });
   };
 
   const formatAge = (age: number) => {
@@ -39,8 +59,10 @@ const DogCard = ({ dog }: DogCardProps) => {
     }
   };
 
+  const isDogAFave = favorites.some((f) => f.id === dog.id);
+
   return (
-    <Card className='flex flex-col justify-between rounded overflow-hidden shadow-lg w-80 h-full hover:scale-102 transition-transform duration-300'>
+    <Card className='flex flex-col justify-between rounded overflow-hidden shadow-lg w-75 h-full hover:scale-102 transition-transform duration-300'>
       <CardContent className='flex flex-col p-0 relative'>
         <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-10' />
         <Badge className='absolute top-0 right-0 rounded-full bg-primary hover:bg-primary m-2'>
@@ -56,10 +78,14 @@ const DogCard = ({ dog }: DogCardProps) => {
       <CardHeader className='flex flex-col'>
         <div className='flex flex-row items-center justify-between w-full'>
           <CardTitle className='mr-4'>{dog.name}</CardTitle>
-          <div
-            className='cursor-pointer'
-            onClick={() => addToFavorites(dog.id)}>
-            <Heart className='h-6 w-6 shrink-0 text-destructive' />
+          <div className='cursor-pointer' onClick={() => addToFavorites(dog)}>
+            <Heart
+              className={
+                isDogAFave
+                  ? 'fill-destructive text-destructive h-6 w-6 shrink-0'
+                  : 'text-destructive h-6 w-6 shrink-0'
+              }
+            />
           </div>
         </div>
         <CardDescription>

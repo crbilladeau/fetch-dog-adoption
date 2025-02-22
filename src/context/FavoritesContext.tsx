@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 
-interface FavoritesContextType {
-  favorites: string[];
-  setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
-}
+/* Types */
+import { FavoritesContextType } from './types/FavoritesContextType';
+import { Dog } from '../types/Dog';
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
   undefined
@@ -16,7 +15,11 @@ export const FavoritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<Dog[]>(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
+  console.log({ favorites });
 
   return (
     <FavoritesContext.Provider value={{ favorites, setFavorites }}>
@@ -28,7 +31,7 @@ export const FavoritesProvider = ({
 export const useFavorites = () => {
   const context = useContext(FavoritesContext);
   if (!context) {
-    throw new Error('useFavorites must be used within an FavoritesProvider');
+    throw new Error('useFavorites must be used within a FavoritesProvider');
   }
   return context;
 };
