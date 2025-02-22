@@ -21,7 +21,7 @@ import {
 import { cn } from '@/lib/utils';
 
 /* Types */
-import { DogsSearchParams } from '../../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../../hooks/fetchers/useFetchDogs';
 
 interface BreedFilterProps {
   breeds: string[];

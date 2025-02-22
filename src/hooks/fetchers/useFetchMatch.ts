@@ -1,8 +1,19 @@
 import { useEffect, useState } from 'react';
+import _axios, { AxiosResponse } from 'axios';
+
+/* API */
 import axios from '../../api/config';
 
-/* Types */
-import { FetchMatchParams, FetchMatchResponse } from '../types/FetchMatch';
+export interface FetchMatchParams {
+  dogIds: string[];
+  skip: boolean;
+}
+
+export interface FetchMatchResponse {
+  match: string;
+  isLoading: boolean;
+  isError: string | null;
+}
 
 const useFetchMatch = ({
   dogIds,
@@ -18,16 +29,18 @@ const useFetchMatch = ({
       setIsLoading(true);
 
       try {
-        const response = await axios.post('/dogs/match', dogIds);
+        const response: AxiosResponse = await axios.post('/dogs/match', dogIds);
         const match = response?.data?.match;
 
         setMatch(match);
       } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-          setIsError(error.message);
+        if (_axios.isAxiosError(error)) {
+          setIsError(
+            error.response?.data?.message ||
+              'There was an error while fetching a match.'
+          );
         } else {
-          throw new Error('There was an error while fetching a match.');
+          console.error(error);
         }
       } finally {
         setIsLoading(false);

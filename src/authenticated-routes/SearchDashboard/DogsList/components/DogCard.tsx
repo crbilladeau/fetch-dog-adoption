@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 import { useFavorites } from '../../../../context/FavoritesContext';
 
 /* Types */
-import { Dog } from '../../../../types/Dog';
+import { Dog } from '../../../../types/dog.interface';
 
 interface DogCardProps {
   dog: Dog;

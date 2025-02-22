@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 /* API */
 import { getZipcodes } from '../../api/zipcodes';
 import { getLocations } from '../../api/locations';
 
 /* Types */
-import { Location } from '../../types/Location';
-import {
-  FetchLocationsParams,
-  FetchLocationsResponse,
-} from '../types/FetchLocations';
-import { LocationSearchParams } from '../../api/types/LocationSearchParams';
+import { Location } from '../../types/location.interface';
+import { LocationSearchParams } from '../../api/locations';
+
+export interface FetchLocationsParams {
+  query?: string;
+  skip?: boolean;
+}
+
+export interface FetchLocationsResponse {
+  locations: Location[];
+  isLoading: boolean;
+  isError: string | null;
+}
 
 type ParsedQuery =
   | { type: 'zipcode'; params: string[] }
@@ -72,11 +80,13 @@ const useFetchLocations = ({
         }
       }
     } catch (error) {
-      console.error(error);
-      if (error instanceof Error) {
-        setIsError(error.message);
+      if (axios.isAxiosError(error)) {
+        setIsError(
+          error.response?.data?.message ||
+            'There was an error while fetching locations.'
+        );
       } else {
-        throw new Error('There was an error while fetching locations.');
+        console.error(error);
       }
     } finally {
       setIsLoading(false);

@@ -1,10 +1,27 @@
+import _axios, { AxiosResponse } from 'axios';
+
+/* API */
 import axios from './config';
 
-import { LocationSearchParams } from './types/LocationSearchParams';
+import { Coordinates } from '../types/coordinates.interface';
+export interface LocationSearchParams {
+  city?: string;
+  states?: string[];
+  geoBoundingBox?: {
+    top?: Coordinates;
+    left?: Coordinates;
+    bottom?: Coordinates;
+    right?: Coordinates;
+    bottom_left?: Coordinates;
+    top_left?: Coordinates;
+  };
+  size?: number;
+  from?: number;
+}
 
 export const getLocations = async (params: LocationSearchParams) => {
   try {
-    const response = await axios.post('/locations/search', {
+    const response: AxiosResponse = await axios.post('/locations/search', {
       city: params?.city,
       states: params?.states,
       geoBoundingBox: params?.geoBoundingBox,
@@ -14,9 +31,10 @@ export const getLocations = async (params: LocationSearchParams) => {
 
     return response;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error('There was an error while fetching locations.');
+    if (_axios.isAxiosError(error)) {
+      throw error;
+    } else {
+      console.error(error);
     }
-    throw new Error('An unknown error occurred');
   }
 };

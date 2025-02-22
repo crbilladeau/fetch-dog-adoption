@@ -1,11 +1,16 @@
 import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 /* API */
 import { loginUser } from '../api/auth';
 
-/* Types */
-import { AuthContextType } from './types/AuthContextTypes';
+export interface AuthContextType {
+  isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  login: (email: string, password: string) => Promise<void>;
+  error: string | null;
+}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -29,8 +34,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         navigate('/search');
       }
     } catch (error) {
-      if (error instanceof Error) {
-        throw error;
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        setIsAuthenticated(false);
+        // remove user's auth session
+        localStorage.removeItem('auth-session');
+        navigate('/login');
+        return;
       }
       throw new Error(
         'There was an error while logging you in. Please try again later.'

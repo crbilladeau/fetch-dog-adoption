@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
+import _axios, { AxiosResponse } from 'axios';
+
+/* API */
 import axios from '../../api/config';
 
-/* Types */
-import { FetchBreedsResponse } from '../types/FetchBreeds';
+export interface FetchBreedsResponse {
+  breeds: string[];
+  isLoading: boolean;
+  isError: string | null;
+}
 
 const useFetchBreeds = (): FetchBreedsResponse => {
   const [breeds, setBreeds] = useState<string[]>([]);
@@ -15,15 +21,17 @@ const useFetchBreeds = (): FetchBreedsResponse => {
       setIsLoading(true);
 
       try {
-        const response = await axios.get('/dogs/breeds');
+        const response: AxiosResponse = await axios.get('/dogs/breeds');
 
         setBreeds(response?.data);
       } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-          setIsError(error.message);
+        if (_axios.isAxiosError(error)) {
+          setIsError(
+            error.response?.data?.message ||
+              'There was an error while fetching breeds.'
+          );
         } else {
-          throw new Error('There was an error while fetching breeds.');
+          console.error(error);
         }
       } finally {
         setIsLoading(false);

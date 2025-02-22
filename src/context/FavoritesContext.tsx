@@ -1,8 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 
 /* Types */
-import { FavoritesContextType } from './types/FavoritesContextType';
-import { Dog } from '../types/Dog';
+import { Dog } from '../types/dog.interface';
+
+export interface FavoritesContextType {
+  favorites: Dog[];
+  setFavorites: React.Dispatch<React.SetStateAction<Dog[]>>;
+}
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
   undefined

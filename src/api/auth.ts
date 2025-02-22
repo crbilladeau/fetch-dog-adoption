@@ -1,10 +1,9 @@
-import { AxiosResponse } from 'axios';
+import _axios, { AxiosResponse } from 'axios';
+
+/* API */
 import axios from './config';
 
-export const loginUser = async (
-  name: string,
-  email: string
-): Promise<AxiosResponse> => {
+export const loginUser = async (name: string, email: string) => {
   try {
     const response: AxiosResponse = await axios.post('/auth/login', {
       name,
@@ -13,9 +12,10 @@ export const loginUser = async (
 
     return response;
   } catch (error) {
-    if (error instanceof Error) {
-      throw new Error('There was an error while logging you in.');
+    if (_axios.isAxiosError(error)) {
+      throw error;
+    } else {
+      console.error(error);
     }
-    throw new Error('An unknown error occurred during login');
   }
 };

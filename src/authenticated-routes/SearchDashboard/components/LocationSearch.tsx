@@ -15,7 +15,7 @@ import useFetchLocations from '../../../hooks/fetchers/useFetchLocations';
 import useDebounce from '../../../hooks/util/useDebounce';
 
 /* Types */
-import { DogsSearchParams } from '../../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../../hooks/fetchers/useFetchDogs';
 
 interface LocationSearchProps {
   setParams: React.Dispatch<React.SetStateAction<DogsSearchParams>>;
@@ -25,7 +25,7 @@ const LocationSearch = ({ setParams }: LocationSearchProps) => {
   const [value, setValue] = useState<string>('');
 
   const debouncedValue = useDebounce(value, 300);
-  const { locations, isLoading } = useFetchLocations({
+  const { locations } = useFetchLocations({
     query: debouncedValue,
     skip: !value,
   });
@@ -55,9 +55,7 @@ const LocationSearch = ({ setParams }: LocationSearchProps) => {
         />
         {value && (
           <CommandList className='absolute left-0 top-full w-full max-h-60 overflow-y-auto bg-background border-1 border-border shadow-lg rounded-md z-50 text-foreground font-semibold'>
-            <CommandEmpty>
-              {isLoading ? 'Loading...' : 'No results found.'}
-            </CommandEmpty>
+            <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading='Suggestions'>
               {locations?.map((location) => {
                 const cityStateZip = `${location?.city}, ${location?.state} ${location?.zip_code}`;

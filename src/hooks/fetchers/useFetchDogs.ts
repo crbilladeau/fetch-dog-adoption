@@ -1,8 +1,29 @@
 import { useEffect, useState } from 'react';
+import _axios from 'axios';
+
+/* API */
 import axios from '../../api/config';
 
 /* Types */
-import { FetchDogsResponse, DogsSearchParams } from '../types/FetchDogs';
+import { Dog } from '../../types/dog.interface';
+
+export interface DogsSearchParams {
+  breeds?: string[];
+  minAge?: number;
+  maxAge?: number;
+  zipCodes?: string[];
+  sort?: { field: string; order: string };
+  size?: number;
+  from?: string;
+}
+
+export interface FetchDogsResponse {
+  dogs: Dog[];
+  isLoading: boolean;
+  isError: string | null;
+  next: string | null;
+  prev: string | null;
+}
 
 export const DEFAULT_SORT = { field: 'breed', order: 'asc' };
 
@@ -59,11 +80,13 @@ const useFetchDogs = ({
           setDogs([]);
         }
       } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-          setIsError(error.message);
+        if (_axios.isAxiosError(error)) {
+          setIsError(
+            error.response?.data?.message ||
+              'There was an error while fetching dogs.'
+          );
         } else {
-          throw new Error('There was an error while fetching dogs.');
+          console.error(error);
         }
       } finally {
         setIsLoading(false);

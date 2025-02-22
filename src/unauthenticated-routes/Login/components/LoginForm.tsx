@@ -6,10 +6,13 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-import FormErrors from '../types/FormErrors';
-
 /* Context */
 import { useAuth } from '../../../context/AuthContext';
+
+type FormErrors = {
+  name?: string;
+  email?: string;
+};
 
 const LoginForm = () => {
   const [name, setName] = useState<string>('');

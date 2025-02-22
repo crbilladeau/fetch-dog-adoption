@@ -13,7 +13,7 @@ import SortDropdown from './components/SortDropdown';
 import FavoritesFlyout from './components/FavoritesFlyout';
 
 /* Types */
-import { DogsSearchParams } from '../../hooks/types/FetchDogs';
+import { DogsSearchParams } from '../../hooks/fetchers/useFetchDogs';
 
 const SearchDashboard = () => {
   const [params, setParams] = useState<DogsSearchParams>({
