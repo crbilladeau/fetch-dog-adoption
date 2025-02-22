@@ -17,7 +17,7 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 - [FavoritesContext.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/context/__tests__/FavoritesContext.test.tsx)
 - [useFetchBreeds.test.ts](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/hooks/fetchers/__tests__/useFetchBreeds.test.ts)
 - [Login.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/unauthenticated-routes/Login/__tests__/Login.test.tsx)
-- [LoginForm.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/unauthenticated-routes/Login/components/__tests__/LoginForm.test.tsx)
+- [LoginForm.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/unauthenticated-routes/Login/__tests__/LoginForm.test.tsx)
 
 ## Getting Started
 
