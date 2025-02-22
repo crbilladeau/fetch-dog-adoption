@@ -7,6 +7,7 @@ import useFetchDogs from '../../hooks/fetchers/useFetchDogs';
 /* Components */
 import LocationSearch from './components/LocationSearch';
 import BreedFilter from './components/BreedFilter';
+import AgeFilter from './components/AgeFilter';
 import PaginationControls from './components/PaginationControls';
 import DogsList from './DogsList';
 import SortDropdown from './components/SortDropdown';
@@ -18,8 +19,8 @@ import { DogsSearchParams } from '../../hooks/fetchers/useFetchDogs';
 const SearchDashboard = () => {
   const [params, setParams] = useState<DogsSearchParams>({
     breeds: [],
-    minAge: undefined,
-    maxAge: undefined,
+    ageMin: undefined,
+    ageMax: undefined,
     zipCodes: undefined,
     size: 25,
     from: undefined,
@@ -41,8 +42,7 @@ const SearchDashboard = () => {
     params,
   });
 
-  const disablePagination =
-    isLoadingBreeds || isLoadingDogs || dogs.length < 25;
+  const disablePagination = isLoadingBreeds || isLoadingDogs;
 
   return (
     <div className='flex flex-col justify-center items-center px-4 relative mx-auto'>
@@ -62,18 +62,21 @@ const SearchDashboard = () => {
             selectedBreeds={params?.breeds ?? []}
             setParams={setParams}
           />
+          <AgeFilter setParams={setParams} isLoading={isLoadingDogs} />
         </div>
       </div>
-      <div className='flex flex-col sm:flex-row items-center self-end'>
-        <p className='font-semibold'>Sort filters:</p>
-        <SortDropdown type='field' setParams={setParams} params={params} />
-        <SortDropdown type='order' setParams={setParams} params={params} />
+      <div className='flex flex-col  justify-center mx-auto max-w-7xl w-full'>
+        <div className='flex flex-col sm:flex-row items-center justify-end'>
+          <p className='font-semibold'>Sort filters:</p>
+          <SortDropdown type='field' setParams={setParams} params={params} />
+          <SortDropdown type='order' setParams={setParams} params={params} />
+        </div>
+        <DogsList
+          dogs={dogs}
+          isError={isErrorBreeds || isErrorDogs}
+          isLoading={isLoadingBreeds || isLoadingDogs}
+        />
       </div>
-      <DogsList
-        dogs={dogs}
-        isError={isErrorBreeds || isErrorDogs}
-        isLoading={isLoadingBreeds || isLoadingDogs}
-      />
       <PaginationControls
         setParams={setParams}
         next={next}

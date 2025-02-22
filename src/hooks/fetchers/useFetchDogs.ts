@@ -9,15 +9,15 @@ import { Dog } from '../../types/dog.interface';
 
 export interface DogsSearchParams {
   breeds?: string[];
-  minAge?: number;
-  maxAge?: number;
+  ageMax?: number;
+  ageMin?: number;
   zipCodes?: string[];
   sort?: { field: string; order: string };
   size?: number;
   from?: string;
 }
 
-export interface FetchDogsResponse {
+export interface FetchDogsResult {
   dogs: Dog[];
   isLoading: boolean;
   isError: string | null;
@@ -31,7 +31,7 @@ const useFetchDogs = ({
   params,
 }: {
   params: DogsSearchParams;
-}): FetchDogsResponse => {
+}): FetchDogsResult => {
   const [dogs, setDogs] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<string | null>(null);
@@ -47,8 +47,8 @@ const useFetchDogs = ({
         const searchDogsResponse = await axios.get('/dogs/search', {
           params: {
             breeds: params?.breeds,
-            minAge: params?.minAge,
-            maxAge: params?.maxAge,
+            ageMin: params?.ageMin,
+            ageMax: params?.ageMax,
             zipCodes: params?.zipCodes,
             size: params?.size,
             from: params?.from,
@@ -96,8 +96,8 @@ const useFetchDogs = ({
     fetchDogs();
   }, [
     params?.breeds,
-    params?.minAge,
-    params?.maxAge,
+    params?.ageMin,
+    params?.ageMax,
     params?.zipCodes,
     params?.sort?.field,
     params?.sort?.order,

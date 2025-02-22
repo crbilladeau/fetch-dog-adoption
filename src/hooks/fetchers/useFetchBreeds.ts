@@ -4,13 +4,13 @@ import _axios, { AxiosResponse } from 'axios';
 /* API */
 import axios from '../../api/config';
 
-export interface FetchBreedsResponse {
+export interface FetchBreedsResults {
   breeds: string[];
   isLoading: boolean;
   isError: string | null;
 }
 
-const useFetchBreeds = (): FetchBreedsResponse => {
+const useFetchBreeds = (): FetchBreedsResults => {
   const [breeds, setBreeds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);

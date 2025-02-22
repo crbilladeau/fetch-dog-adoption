@@ -9,7 +9,7 @@ export interface FetchMatchParams {
   skip: boolean;
 }
 
-export interface FetchMatchResponse {
+export interface FetchMatchResult {
   match: string;
   isLoading: boolean;
   isError: string | null;
@@ -18,7 +18,7 @@ export interface FetchMatchResponse {
 const useFetchMatch = ({
   dogIds,
   skip = true,
-}: FetchMatchParams): FetchMatchResponse => {
+}: FetchMatchParams): FetchMatchResult => {
   const [match, setMatch] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);

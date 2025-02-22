@@ -14,7 +14,7 @@ export interface FetchLocationsParams {
   skip?: boolean;
 }
 
-export interface FetchLocationsResponse {
+export interface FetchLocationsResult {
   locations: Location[];
   isLoading: boolean;
   isError: string | null;
@@ -27,7 +27,7 @@ type ParsedQuery =
 const useFetchLocations = ({
   query,
   skip,
-}: FetchLocationsParams): FetchLocationsResponse => {
+}: FetchLocationsParams): FetchLocationsResult => {
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);

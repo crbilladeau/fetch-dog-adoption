@@ -134,7 +134,7 @@ const LoginForm = () => {
           </div>
           <Button
             variant='default'
-            className='mt-3 cursor-pointer focus:outline-2 focus:outline-offset-2 px-10 text-popover-foreground font-bold outline-2 outline-popover-foreground hover:bg-hover'
+            className='mt-3 cursor-pointer focus:outline-2 focus:outline-popover-foreground focus-visible:ring-2 focus-visible:ring-popover-foreground px-10 text-popover-foreground font-bold hover:bg-hover'
             type='submit'
             disabled={loading}>
             Login
