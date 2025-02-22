@@ -5,6 +5,9 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 ## Features
 
 - Search for dogs and filter by breed and location
+- Sort results by breed, age, or name
+- Add dogs to your favorites
+- Generate a perfect match based on your favorites
 
 ## Getting Started
 
@@ -16,9 +19,7 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 ## DEV TODOS:
 
 - [ ] Add search filters by min/max age
-- [ ] Fix error handling; if request is 401 logout the user
 - [ ] Tests
-- [ ] Optional: add an account page with name and email
 - [x] Add favorites functionality and context (popover flyout)
 - [x] Add match functionality after favorites are added
 - [x] Fix mobile responsiveness

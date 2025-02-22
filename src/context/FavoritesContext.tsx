@@ -23,7 +23,6 @@ export const FavoritesProvider = ({
     const storedFavorites = localStorage.getItem('favorites');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
-  console.log({ favorites });
 
   return (
     <FavoritesContext.Provider value={{ favorites, setFavorites }}>

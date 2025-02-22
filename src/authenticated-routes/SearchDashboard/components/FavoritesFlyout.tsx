@@ -23,53 +23,8 @@ import DogCard from '../DogsList/components/DogCard';
 /* Hooks */
 import useFetchMatch from '../../../hooks/fetchers/useFetchMatch';
 
-interface FavoritesContentProps {
-  isErrorMatch: string | null;
-  match: string;
-}
-
-const FavoritesContent = ({ isErrorMatch, match }: FavoritesContentProps) => {
+const FavoritesContent = () => {
   const [showMore, setShowMore] = useState<boolean>(false);
-
-  const { favorites } = useFavorites();
-
-  const perfectPup = favorites.find((dog) => dog.id === match);
-
-  return (
-    <div className='flex flex-col items-center gap-4'>
-      {isErrorMatch ? (
-        <div>
-          Sorry, there was trouble finding you a match. Please try again later.
-        </div>
-      ) : (
-        perfectPup && (
-          <div className='flex flex-col items-center mb-10'>
-            <h2 className='text-2xl font-medium'>Congrats! 🎉</h2>
-            <h3 className='text-lg font-regular mb-4'>
-              Time to bring {perfectPup.name} home!
-            </h3>
-            <DogCard dog={perfectPup} />
-          </div>
-        )
-      )}
-      <h3 className='text-popover-foreground text-2xl self-start ml-6 font-bold'>
-        My Favorites
-      </h3>
-      {favorites.slice(0, 3).map((dog) => (
-        <DogCard key={dog.id} dog={dog} />
-      ))}
-      {showMore &&
-        favorites.slice(3).map((dog) => <DogCard key={dog.id} dog={dog} />)}
-      <Button
-        className='my-4 cursor-pointer'
-        onClick={() => setShowMore(!showMore)}>
-        {showMore ? 'Show less' : 'Show more'}
-      </Button>
-    </div>
-  );
-};
-
-const FavoritesFlyout = () => {
   const [dogIds, setDogIds] = useState<string[]>([]);
 
   const { favorites } = useFavorites();
@@ -83,6 +38,66 @@ const FavoritesFlyout = () => {
     setDogIds(favorites.map((dog) => dog.id));
   };
 
+  const perfectPup = favorites.find((dog) => dog.id === match);
+  const hasFavorites = favorites.length > 0;
+  const displayMoreDogs = favorites.length > 3;
+
+  if (!hasFavorites) {
+    return (
+      <h3 className='px-4 text-center font-medium my-10'>
+        You don't have any favorite dogs yet. Find some pups to add!
+      </h3>
+    );
+  }
+
+  return (
+    <>
+      <Button
+        className='w-full max-w-50 self-center mb-10 cursor-pointer'
+        onClick={generateMatch}>
+        Generate Match
+        <PawPrint className='h-4 w-4 shrink-0' />
+      </Button>
+      <div className='flex flex-col items-center gap-4'>
+        {isErrorMatch ? (
+          <div>
+            Sorry, there was trouble finding you a match. Please try again
+            later.
+          </div>
+        ) : (
+          perfectPup && (
+            <div className='flex flex-col items-center mb-10'>
+              <h2 className='text-2xl font-medium'>It's a match! 🎉</h2>
+              <h3 className='text-lg font-regular mb-4'>
+                Time to bring {perfectPup.name} home!
+              </h3>
+              <div className='bg-primary rounded p-4'>
+                <DogCard dog={perfectPup} />
+              </div>
+            </div>
+          )
+        )}
+        <h3 className='text-popover-foreground text-2xl self-start ml-8 font-bold'>
+          My Favorites
+        </h3>
+        {favorites.slice(0, 3).map((dog) => (
+          <DogCard key={dog.id} dog={dog} />
+        ))}
+        {showMore &&
+          favorites.slice(3).map((dog) => <DogCard key={dog.id} dog={dog} />)}
+        {displayMoreDogs && (
+          <Button
+            className='my-4 cursor-pointer'
+            onClick={() => setShowMore(!showMore)}>
+            {showMore ? 'Show less' : 'Show more'}
+          </Button>
+        )}
+      </div>
+    </>
+  );
+};
+
+const FavoritesFlyout = () => {
   return (
     <div className='scroll-auto'>
       <Sheet>
@@ -102,13 +117,7 @@ const FavoritesFlyout = () => {
               find your perfect match!
             </SheetDescription>
           </SheetHeader>
-          <Button
-            className='w-full max-w-50 self-center mb-10 cursor-pointer'
-            onClick={generateMatch}>
-            Generate Match
-            <PawPrint className='h-4 w-4 shrink-0' />
-          </Button>
-          <FavoritesContent isErrorMatch={isErrorMatch} match={match} />
+          <FavoritesContent />
         </SheetContent>
       </Sheet>
     </div>
