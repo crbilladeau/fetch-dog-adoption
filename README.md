@@ -11,6 +11,14 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 - Add dogs to your favorites
 - Generate a perfect match based on your favorites
 
+**Note from the dev:** I added a few unit tests, which use Jest and React Testing Library. While I did not have time to implement 100% coverage, the idea is to demonstrate my testing philosophy and approach to testing. You can check out the following examples here:
+
+- [DogCard.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/authenticated-routes/SearchDashboard/DogsList/components/__tests__/DogCard.test.tsx)
+- [FavoritesContext.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/context/__tests__/FavoritesContext.test.tsx)
+- [useFetchBreeds.test.ts](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/hooks/fetchers/__tests__/useFetchBreeds.test.ts)
+- [Login.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/unauthenticated-routes/Login/__tests__/Login.test.tsx)
+- [LoginForm.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/unauthenticated-routes/Login/components/__tests__/LoginForm.test.tsx)
+
 ## Getting Started
 
 1. Clone the repository `git clone https://github.com/charliebilladeau/fetch-dog-adoption.git`
