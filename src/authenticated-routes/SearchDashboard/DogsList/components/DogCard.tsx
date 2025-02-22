@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { toast } from 'sonner';
 
 /* Hooks */
 import { useFavorites } from '../../../../context/FavoritesContext';
@@ -24,30 +23,7 @@ interface DogCardProps {
 }
 
 const DogCard = ({ dog }: DogCardProps) => {
-  const { favorites, setFavorites } = useFavorites();
-
-  const addToFavorites = (dog: Dog): void => {
-    const alreadyFavorited = favorites.some((f) => f.id === dog.id);
-
-    // alert
-    toast.success(
-      `${dog.name}, ${dog.breed} ${
-        alreadyFavorited ? 'removed from' : 'added to'
-      } favorites`
-    );
-
-    setFavorites((prevState) => {
-      let newFavorites;
-      if (alreadyFavorited) {
-        newFavorites = prevState.filter((f) => f.id !== dog.id);
-      } else {
-        newFavorites = [...prevState, dog];
-      }
-      // save to local storage to persist da doggies
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
-      return newFavorites;
-    });
-  };
+  const { favorites, addToFavorites } = useFavorites();
 
   const formatAge = (age: number) => {
     if (age < 1) {
@@ -80,6 +56,8 @@ const DogCard = ({ dog }: DogCardProps) => {
           <CardTitle className='mr-4'>{dog.name}</CardTitle>
           <div className='cursor-pointer' onClick={() => addToFavorites(dog)}>
             <Heart
+              aria-role='button'
+              aria-label='favorite dog'
               className={
                 isDogAFave
                   ? 'fill-destructive text-destructive h-6 w-6 shrink-0'

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 /* API */
-import { loginUser } from '../api/auth';
+import { loginUser, logoutUser } from '../api/auth';
 
 export interface AuthContextType {
   isAuthenticated: boolean;
@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setIsAuthenticated(false);
         // remove user's auth session
         localStorage.removeItem('auth-session');
+        logoutUser();
         navigate('/login');
         return;
       }

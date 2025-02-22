@@ -17,12 +17,3 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 2. Install dependencies with `npm install` or `yarn`
 3. Start the development server with `npm run dev` or `yarn dev`
 4. Open [http://localhost:5173](http://localhost:5173) with your browser to see the application
-
-## DEV TODOS:
-
-- [ ] Tests
-- [x] Add search filters by min/max age
-- [x] Add favorites functionality and context (popover flyout)
-- [x] Add match functionality after favorites are added
-- [x] Fix mobile responsiveness
-- [x] Fix issue with search dropdown

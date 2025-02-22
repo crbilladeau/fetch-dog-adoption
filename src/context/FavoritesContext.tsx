@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
+import { toast } from 'sonner';
 
 /* Types */
 import { Dog } from '../types/dog.interface';
 
 export interface FavoritesContextType {
   favorites: Dog[];
-  setFavorites: React.Dispatch<React.SetStateAction<Dog[]>>;
+  addToFavorites: (dog: Dog) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -24,8 +25,31 @@ export const FavoritesProvider = ({
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   });
 
+  const addToFavorites = (dog: Dog): void => {
+    const alreadyFavorited = favorites.some((f) => f.id === dog.id);
+
+    // alert
+    toast.success(
+      `${dog.name}, ${dog.breed} ${
+        alreadyFavorited ? 'removed from' : 'added to'
+      } favorites`
+    );
+
+    setFavorites((prevState) => {
+      let newFavorites;
+      if (alreadyFavorited) {
+        newFavorites = prevState.filter((f) => f.id !== dog.id);
+      } else {
+        newFavorites = [...prevState, dog];
+      }
+      // save to local storage to persist da doggies
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      return newFavorites;
+    });
+  };
+
   return (
-    <FavoritesContext.Provider value={{ favorites, setFavorites }}>
+    <FavoritesContext.Provider value={{ favorites, addToFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );

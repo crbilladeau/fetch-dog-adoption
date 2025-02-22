@@ -16,8 +16,8 @@ const SkeletonCard = () => {
 
 const LoadingDogsSkeleton = () => {
   return (
-    <div className='grid grid-cols-3 gap-8 my-6 mx-auto'>
-      {Array.from({ length: 6 }).map((_, i) => (
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 my-6 mx-auto'>
+      {Array.from({ length: 25 }).map((_, i) => (
         <SkeletonCard key={i} />
       ))}
     </div>

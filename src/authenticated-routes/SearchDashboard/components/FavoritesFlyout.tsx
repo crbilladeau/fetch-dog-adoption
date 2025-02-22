@@ -45,7 +45,7 @@ const FavoritesContent = () => {
   if (!hasFavorites) {
     return (
       <h3 className='px-4 text-center font-medium my-10'>
-        You don't have any favorite dogs yet. Find some pups to add!
+        You don&apos;t have any favorite dogs yet. Find some pups to add!
       </h3>
     );
   }
@@ -67,7 +67,7 @@ const FavoritesContent = () => {
         ) : (
           perfectPup && (
             <div className='flex flex-col items-center mb-10'>
-              <h2 className='text-2xl font-medium'>It's a match! 🎉</h2>
+              <h2 className='text-2xl font-medium'>It&apos;s a match! 🎉</h2>
               <h3 className='text-lg font-regular mb-4'>
                 Time to bring {perfectPup.name} home!
               </h3>
