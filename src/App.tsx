@@ -5,7 +5,7 @@ import { Toaster } from 'sonner';
 /* Context */
 import { useAuth } from './context/AuthContext';
 
-/* Components */
+/* Routes */
 import Login from './unauthenticated-routes/Login';
 import SearchDashboard from './authenticated-routes/SearchDashboard';
 

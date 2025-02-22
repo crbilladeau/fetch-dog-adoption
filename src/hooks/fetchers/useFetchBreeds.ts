@@ -23,7 +23,7 @@ const useFetchBreeds = (): FetchBreedsResponse => {
         if (error instanceof Error) {
           setIsError(error.message);
         } else {
-          throw error;
+          throw new Error('There was an error while fetching breeds.');
         }
       } finally {
         setIsLoading(false);

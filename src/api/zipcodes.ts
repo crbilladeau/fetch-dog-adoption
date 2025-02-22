@@ -7,7 +7,7 @@ export const getZipcodes = async (params: string[]) => {
     return response;
   } catch (error) {
     if (error instanceof Error) {
-      throw error;
+      throw new Error('There was an error while fetching zipcodes.');
     }
     throw new Error('An unknown error occurred');
   }

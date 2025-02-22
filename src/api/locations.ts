@@ -15,7 +15,7 @@ export const getLocations = async (params: LocationSearchParams) => {
     return response;
   } catch (error) {
     if (error instanceof Error) {
-      throw error;
+      throw new Error('There was an error while fetching locations.');
     }
     throw new Error('An unknown error occurred');
   }

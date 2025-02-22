@@ -29,10 +29,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         navigate('/search');
       }
     } catch (error) {
-      setError(
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error(
         'There was an error while logging you in. Please try again later.'
       );
-      throw error;
     }
   };
 
