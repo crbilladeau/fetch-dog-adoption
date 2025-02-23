@@ -103,12 +103,12 @@ const AgeFilter = ({ isLoading, setParams }: AgeFilterProps) => {
           role='combobox'
           aria-expanded={openFilter}
           disabled={isLoading}
-          className='w-full max-w-[500px] sm:max-w-[200px] justify-between py-5 border-2 border-popover-foreground'>
+          className='w-full max-w-[500px] md:max-w-[200px] justify-between py-5 border-2 border-popover-foreground'>
           {renderAgeLabel()}
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='max-w-[400px] sm:max-w-[200px]'>
+      <PopoverContent className='max-w-[400px] md:max-w-[200px]'>
         <form className='flex flex-col gap-4' onSubmit={submitAge}>
           <div>
             <Label htmlFor='ageMin'>Minimum Age</Label>

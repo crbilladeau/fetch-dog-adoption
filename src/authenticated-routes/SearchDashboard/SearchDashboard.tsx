@@ -47,14 +47,14 @@ const SearchDashboard = () => {
   return (
     <div className='flex flex-col justify-center items-center px-4 relative mx-auto'>
       <FavoritesFlyout />
-      <div className='h-[100vh] sm:h-[50vh] w-full flex flex-col items-center justify-center'>
+      <div className='h-[100vh] md:h-[50vh] w-full flex flex-col items-center justify-center'>
         <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
           Every dog deserves a home.
         </h1>
         <h2 className='text-2xl font-normal mb-14 text-center'>
           The perfect pup is just one search away.
         </h2>
-        <div className='w-full flex flex-col sm:flex-row items-center justify-center'>
+        <div className='w-full flex flex-col md:flex-row items-center justify-center'>
           <LocationSearch setParams={setParams} />
           <BreedFilter
             breeds={breeds}
@@ -65,8 +65,8 @@ const SearchDashboard = () => {
           <AgeFilter setParams={setParams} isLoading={isLoadingDogs} />
         </div>
       </div>
-      <div className='flex flex-col  justify-center mx-auto max-w-7xl w-full'>
-        <div className='flex flex-col sm:flex-row items-center justify-end'>
+      <div className='flex flex-col justify-center mx-auto max-w-7xl w-full'>
+        <div className='flex flex-col md:flex-row items-center justify-end'>
           <p className='font-semibold'>Sort filters:</p>
           <SortDropdown type='field' setParams={setParams} params={params} />
           <SortDropdown type='order' setParams={setParams} params={params} />

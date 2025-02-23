@@ -44,7 +44,7 @@ const LocationSearch = ({ setParams }: LocationSearchProps) => {
   };
 
   return (
-    <div className='w-full max-w-[500px] sm:mr-3 sm:mb-0 mb-6 relative'>
+    <div className='w-full max-w-[500px] md:mr-3 md:mb-0 mb-6 relative'>
       <Command className='border-2 border-popover-foreground focus-within:bg-accent text-foreground font-semibold'>
         <CommandInput
           placeholder='Enter city, state, or zipcode'
