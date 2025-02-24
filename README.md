@@ -6,12 +6,14 @@ Built with [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com
 
 ## Features
 
-- Search for dogs and filter by breed and location
+- Search for dogs and filter by breed, location, and age range
 - Sort results by breed, age, or name
-- Add dogs to your favorites
+- Add dogs to your favorites, saved to browser local storage
 - Generate a perfect match based on your favorites
 
-**Note from the dev:** I added a few unit tests, which use Jest and React Testing Library. While I did not have time to implement 100% coverage, the idea is to demonstrate my testing philosophy and approach to testing. You can check out the following examples here:
+## Note from the dev
+
+I added a few unit tests, which use Jest and React Testing Library. While I did not have time to implement 100% coverage, the idea of adding unit tests was to demonstrate my testing philosophy and general approach to testing. You can check out the following examples here:
 
 - [DogCard.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/authenticated-routes/SearchDashboard/DogsList/components/__tests__/DogCard.test.tsx)
 - [FavoritesContext.test.tsx](https://github.com/crbilladeau/fetch-dog-adoption/blob/master/src/context/__tests__/FavoritesContext.test.tsx)
