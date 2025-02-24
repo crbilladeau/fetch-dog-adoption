@@ -113,7 +113,7 @@ const AgeFilter = ({ isLoading, setParams }: AgeFilterProps) => {
           <div>
             <Label htmlFor='ageMin'>Minimum Age</Label>
             <Input
-              className='border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
+              className='border-2 border-popover-foreground font-medium focus:bg-accent'
               id='ageMin'
               defaultValue={ageMin}
               type='number'
@@ -128,7 +128,7 @@ const AgeFilter = ({ isLoading, setParams }: AgeFilterProps) => {
           <div>
             <Label htmlFor='ageMax'>Maximum Age</Label>
             <Input
-              className='border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
+              className='border-2 border-popover-foreground font-medium focus:bg-accent'
               id='ageMax'
               defaultValue={ageMax}
               type='number'
@@ -144,7 +144,7 @@ const AgeFilter = ({ isLoading, setParams }: AgeFilterProps) => {
             {error}
           </span>
           <Button
-            className='cursor-pointer focus:outline-2 focus:outline-popover-foreground focus-visible:ring-2 focus-visible:ring-popover-foreground px-10 text-popover-foreground font-bold hover:bg-hover'
+            className='cursor-pointer focus:outline-2 focus:outline-popover-foreground focus-visible:ring-2 focus-visible:ring-popover-foreground px-10 font-bold hover:bg-hover'
             type='submit'>
             Apply
           </Button>

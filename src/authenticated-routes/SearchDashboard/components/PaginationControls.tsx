@@ -36,8 +36,8 @@ const PaginationControls = ({
           <PaginationPrevious
             className={
               !prev || disabled
-                ? 'opacity-50 pointer-events-none text-popover-foreground font-medium outline-1 outline-popover-foreground'
-                : 'cursor-pointer text-popover-foreground font-medium outline-1 outline-popover-foreground'
+                ? 'opacity-50 pointer-events-none font-medium outline-1 outline-popover-foreground'
+                : 'cursor-pointer font-medium outline-1 outline-popover-foreground'
             }
             isActive={!!prev}
             onClick={() => selectPrevOrNext(prev)}
@@ -47,8 +47,8 @@ const PaginationControls = ({
           <PaginationNext
             className={
               !next || disabled
-                ? 'opacity-50 pointer-events-none text-popover-foreground font-medium outline-1 outline-popover-foreground'
-                : 'cursor-pointer text-popover-foreground font-medium outline-1 outline-popover-foreground'
+                ? 'opacity-50 pointer-events-none font-medium outline-1 outline-popover-foreground'
+                : 'cursor-pointer font-medium outline-1 outline-popover-foreground'
             }
             isActive={!!next}
             onClick={() => selectPrevOrNext(next)}

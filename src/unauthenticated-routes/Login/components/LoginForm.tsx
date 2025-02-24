@@ -87,8 +87,8 @@ const LoginForm = () => {
             <Input
               className={
                 errors?.name
-                  ? 'border-destructive text-popover-foreground font-medium focus:bg-accent'
-                  : 'border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
+                  ? 'border-destructive font-medium focus:bg-accent'
+                  : 'border-2 border-popover-foreground font-medium focus:bg-accent'
               }
               id='name'
               type='text'
@@ -113,8 +113,8 @@ const LoginForm = () => {
             <Input
               className={
                 errors?.email
-                  ? 'border-destructive text-popover-foreground font-medium focus:bg-accent'
-                  : 'border-2 border-popover-foreground text-popover-foreground font-medium focus:bg-accent'
+                  ? 'border-destructive font-medium focus:bg-accent'
+                  : 'border-2 border-popover-foreground font-medium focus:bg-accent'
               }
               id='email'
               type='email'

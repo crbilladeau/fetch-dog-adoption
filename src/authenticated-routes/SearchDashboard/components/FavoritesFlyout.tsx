@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 /* UI */
 import {
@@ -52,13 +53,7 @@ const FavoritesContent = () => {
 
   return (
     <>
-      <Button
-        className='w-full max-w-50 self-center mb-10 cursor-pointer'
-        onClick={generateMatch}>
-        Generate Match
-        <PawPrint className='h-4 w-4 shrink-0' />
-      </Button>
-      <div className='flex flex-col items-center gap-4'>
+      <div className='flex flex-col items-center gap-4 mt-6'>
         {isErrorMatch ? (
           <div>
             Sorry, there was trouble finding you a match. Please try again
@@ -66,7 +61,17 @@ const FavoritesContent = () => {
           </div>
         ) : (
           perfectPup && (
-            <div className='flex flex-col items-center mb-10'>
+            <div
+              className='flex flex-col items-center mb-10 relative w-full animate-fade'
+              key={crypto.randomUUID()}>
+              <div className='w-100 h-full absolute top-[-80px] left-[-25px] z-50'>
+                <DotLottieReact
+                  className='max-w-full max-h-full'
+                  src='https://lottie.host/73978144-b170-492e-a7ff-cf8f36bc4e26/h0JWmMpajh.lottie'
+                  loop
+                  autoplay
+                />
+              </div>
               <h2 className='text-2xl font-medium'>It&apos;s a match! 🎉</h2>
               <h3 className='text-lg font-regular mb-4'>
                 Time to bring {perfectPup.name} home!
@@ -77,9 +82,13 @@ const FavoritesContent = () => {
             </div>
           )
         )}
-        <h3 className='text-popover-foreground text-2xl self-start ml-8 font-bold'>
-          My Favorites
-        </h3>
+        <Button
+          className='w-full max-w-50 self-center mb-10 cursor-pointer'
+          onClick={generateMatch}>
+          Generate Match
+          <PawPrint className='h-4 w-4 shrink-0' />
+        </Button>
+        <h3 className='text-2xl self-start ml-8 font-bold'>My Favorites</h3>
         {favorites.slice(0, 3).map((dog) => (
           <DogCard key={dog.id} dog={dog} />
         ))}
@@ -102,14 +111,16 @@ const FavoritesFlyout = () => {
     <div className='scroll-auto'>
       <Sheet>
         <SheetTrigger className='p-4 cursor-pointer absolute top-0 right-0 z-50 m-4 px-4 flex items-center'>
-          <span className='text-popover-foreground font-semibold text-lg'>
+          <Button
+            className='cursor-pointer font-semibold text-md'
+            aria-label='View favorited dogs'>
             Favorites
-          </span>
-          <Heart className='h-6 w-6 shrink-0 ml-2 text-destructive fill-destructive' />
+            <Heart className='h-6 w-6 shrink-0 text-destructive fill-destructive' />
+          </Button>
         </SheetTrigger>
         <SheetContent className='py-4 px-2 overflow-y-auto'>
           <SheetHeader>
-            <SheetTitle className='text-popover-foreground text-3xl font-bold'>
+            <SheetTitle className='text-3xl font-bold'>
               Favorite Dogs
             </SheetTitle>
             <SheetDescription className='text-md'>

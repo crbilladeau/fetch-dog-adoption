@@ -53,18 +53,23 @@ const DogCard = ({ dog }: DogCardProps) => {
       </CardContent>
       <CardHeader className='flex flex-col'>
         <div className='flex flex-row items-center justify-between w-full'>
-          <CardTitle className='mr-4'>{dog.name}</CardTitle>
-          <div className='cursor-pointer' onClick={() => addToFavorites(dog)}>
+          <CardTitle className='mr-4 text-lg'>
+            <h4>{dog.name}</h4>
+          </CardTitle>
+          <button
+            key={crypto.randomUUID()}
+            className='cursor-pointer focus:animate-pop'
+            onClick={() => addToFavorites(dog)}>
             <Heart
               aria-role='button'
               aria-label='favorite dog'
               className={
                 isDogAFave
-                  ? 'fill-destructive text-destructive h-6 w-6 shrink-0'
-                  : 'text-destructive h-6 w-6 shrink-0'
+                  ? 'fill-destructive text-destructive h-6 w-6'
+                  : 'text-destructive h-6 w-6'
               }
             />
-          </div>
+          </button>
         </div>
         <CardDescription>
           <p>

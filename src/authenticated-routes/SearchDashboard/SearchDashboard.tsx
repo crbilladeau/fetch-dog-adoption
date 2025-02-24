@@ -48,7 +48,7 @@ const SearchDashboard = () => {
     <div className='flex flex-col justify-center items-center px-4 relative mx-auto'>
       <FavoritesFlyout />
       <div className='h-[100vh] md:h-[50vh] w-full flex flex-col items-center justify-center'>
-        <h1 className='text-5xl font-extrabold mb-3 text-center text-popover-foreground'>
+        <h1 className='text-5xl font-extrabold mb-3 text-center'>
           Every dog deserves a home.
         </h1>
         <h2 className='text-2xl font-normal mb-14 text-center'>
